@@ -1,12 +1,12 @@
 {
   "development":{
     "connector": [
-    {"id": "connector-server-1", "host": "120.132.48.147", "port": 3150, "clientPort": 22, "frontend": true}
+    {"id": "connector-server-1", "host": "120.132.48.147", "port": 32766, "clientPort": 22, "frontend": true}
     ]
   },
   "production":{
     "connector": [
-    {"id": "connector-server-1", "host": "120.132.48.147", "port": 3150, "clientPort": 22, "frontend": true}
+    {"id": "connector-server-1", "host": "120.132.48.147", "port": 32766, "clientPort": 22, "frontend": true}
     ]
   }
 }

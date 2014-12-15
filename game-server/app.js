@@ -13,10 +13,10 @@ app.configure('production|development', 'connector', function(){
       connector : pomelo.connectors.sioconnector,
       //websocket, htmlfile, xhr-polling, jsonp-polling, flashsocket
       transports : ['websocket'],
-      heartbeats : true,
+      heartbeats : 3,
       closeTimeout : 60,
-      heartbeatTimeout : 60,
-      heartbeatInterval : 20
+      //heartbeatTimeout : 60,
+      //heartbeatInterval : 20
     });
 });
 

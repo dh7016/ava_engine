@@ -1,24 +1,13 @@
 {
   "development":{
 
-    "master": [
-    { "id": "master-server-1", "host": "120.132.48.147", "port": 3389}
-    ],
-
-
     "connector": [
-    {"id": "connector-server-1", "host": "120.132.48.147", "port": 32766, "clientPort": 22, "frontend": true}
+    {"id": "connector-server-1", "host": "120.132.48.147", "port": 3520, "clientPort": 3550, "frontend": true}
     ]
   },
   "production":{
-      "master": [
-    { "id": "master-server-1", "host": "120.132.48.147", "port": 3389}
-    ],
-
-
-
     "connector": [
-    {"id": "connector-server-1", "host": "120.132.48.147", "port": 32766, "clientPort": 22, "frontend": true}
+    {"id": "connector-server-1", "host": "120.132.48.147", "port": 3520, "clientPort": 3550, "frontend": true}
     ]
   }
 }

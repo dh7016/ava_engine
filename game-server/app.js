@@ -10,13 +10,17 @@ app.set('name', 'ava_engine');
 app.configure('production|development', 'connector', function(){
   app.set('connectorConfig',
     {
-      connector : pomelo.connectors.sioconnector,
+      connector : pomelo.connectors.hybridconnector,
+      heartbeat : 3,
+
+      
+      /*connector : pomelo.connectors.sioconnector,
       //websocket, htmlfile, xhr-polling, jsonp-polling, flashsocket
       transports : ['websocket'],
       heartbeats : true,
       closeTimeout : 60,
       heartbeatTimeout : 60,
-      heartbeatInterval : 20
+      heartbeatInterval : 20*/
     });
 });
 

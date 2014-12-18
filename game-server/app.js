@@ -12,7 +12,7 @@ app.configure('production|development', function(){
 
       //mysql 数据库
       //config 
-      app.loadConfig('mysql', app.getBase() + '/../game-server/config/mysql.json');  
+      app.loadConfig('mysql', app.getBase() + '/config/mysql.json');  
 
 });
 

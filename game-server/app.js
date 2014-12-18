@@ -9,27 +9,21 @@ app.set('name', 'ava_engine');
 // app configuration
 //global 全局
 app.configure('production|development',function(){
-  app.set('connectorConfig',
-    {
+
       //mysql 数据库
       //config 
       app.loadConfig('mysql', app.getBase() + '/../game-server/config/mysql.json');  
 
-
-
-
-    });
 });
 
 //mysql连接点
 app.configure('production|development', 'gate|connector' function(){
-  app.set('connectorConfig',
-    {
+
       var dbclient = require('./app/database/mySql/mySql').init(app);
       app.set('dbclient', dbclient); 
 
 
-    });
+
 });
 
 

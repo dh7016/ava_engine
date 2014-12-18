@@ -12,15 +12,15 @@ app.configure('production|development', function(){
 
       //mysql 数据库
       //config 
-      app.loadConfig('mysql', app.getBase() + '/../game-server/config/mysql.json');  
+     // app.loadConfig('mysql', app.getBase() + '/../game-server/config/mysql.json');  
 
 });
 
 //mysql连接点
 app.configure('production|development', 'gate|connector' , function(){
 
-      var dbclient = require('./app/database/mySql/mySql').init(app);
-      app.set('dbclient', dbclient); 
+      //var dbclient = require('./app/database/mySql/mySql').init(app);
+     // app.set('dbclient', dbclient); 
 
 
 

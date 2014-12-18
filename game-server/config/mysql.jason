@@ -1,0 +1,5 @@
+{
+  "mysql":[
+  {"id":mysql-server "host":"10.10.36.91" "port":3306 "user":"avalon_db" "password":"AVALONdb_12" "database":"test_db"}
+  ] 
+}

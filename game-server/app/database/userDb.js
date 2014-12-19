@@ -87,7 +87,7 @@ userDb.test = function (uid , cb){
 	pomelo.app.get('dbclient').query(sql,args,function(err, res) {
 
 		//返还一个结果
-		cb(res[1]);
+		cb('app');
 
 
 	});

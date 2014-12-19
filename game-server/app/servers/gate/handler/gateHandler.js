@@ -23,11 +23,10 @@ var Handler = function(app) {
     	});
     	return;
     }
-    //测试
-    next(null,{info : 'success'});
+   
 
     //2确认合格 分配一个合适的login server 并且返还给客户端 ip 和 clientport
-    /*var logins = this.app.getServersByType('login');
+    var logins = this.app.getServersByType('login');
 	if(!logins || logins.length === 0) {
 		next(null, {code: 501});
 		return;
@@ -35,5 +34,22 @@ var Handler = function(app) {
 
 	var login = dispatcher.dispatch(uid, logins);
 	next(null, {code: 100, host: login.host, port: login.clientPort});
-    */
+    
  };
+
+//得到用户验证方法
+var userDb = require('../../../database/userDb');
+
+ Handler.prototype.test = function (msg,session,next)
+ {
+    next(null,{info : 'success'});
+ }
+
+ Handler.prototype.sql_test = function(msg, session ,next)
+ {
+    var uid=msg.uid;
+    userDb.test(uid,function(info){
+      next(null,{sql:info});
+    })
+
+ }

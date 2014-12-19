@@ -20,12 +20,17 @@ NND.init = function(app){
  * @param {fuction} cb Callback function.
  * 
  */
+///
+
+
+//关于sqlType 0 selected 1
 NND.query = function(sql, args, cb){
 	_pool.acquire(function(err, client) {
 		if (!!err) {
 			console.error('[sqlqueryErr] '+err.stack);
 			return;
 		}
+		//向mysql发送查询信息
 		client.query(sql, args, function(err, res) {
 			_pool.release(client);
 			cb(err, res);

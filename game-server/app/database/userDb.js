@@ -11,7 +11,7 @@ userDb.loginByUsername = function (username, password, cb) {
 	var sql = 'select * from	User where name = ?';
 	var args = [username];//用户的user id
 
-	pomelo.app.get('dbclient').query(sql,args,function(err, res) {
+	pomelo.app.get('dbclient').query(sql, args, function(err , res) {
 		var signal;
 		if(err !== null) {
 			//当查询出现错误
@@ -79,5 +79,19 @@ userDb.loginByDid = function (Did, cb) {
 
 
 /////////////////////////////
+/////test
+userDb.test = function (uid , cb){
+	var sql = 'select * from  ava_db	User where did = ?';
+	var args = [uid];//用户的设备id
 
+	pomelo.app.get('dbclient').query(sql,args,function(err, res) {
+
+		//返还一个结果
+		cb(res[1]);
+
+
+	});
+
+
+}
 

@@ -81,13 +81,13 @@ userDb.loginByDid = function (Did, cb) {
 /////////////////////////////
 /////test
 userDb.test = function (uid , cb){
-	var sql = 'select * from  Auth	User where uid = ?';
+	var sql = 'select * from  Auth	 where uid = ?';
 	var args = [uid];//用户的设备id
 
 	pomelo.app.get('dbclient').query(sql,args,function(err, res) {
 
 		//返还一个结果
-		cb('app');
+		cb(res[0]);
 
 
 	});

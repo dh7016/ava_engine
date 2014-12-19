@@ -4,7 +4,7 @@
 	  "host" : "10.10.36.91",
 		"port" : "3306",
 		"database" : "ava_db",
-		"user" : "avalon_db",
+		"user" : "root",
 		"password" : "AVALONdb_12"
 	},
 
@@ -12,7 +12,7 @@
 	  "host" : "10.10.36.91",
 		"port" : "3306",
 		"database" : "ava_db",
-		"user" : "avalon_db",
+		"user" : "root",
 		"password" : "AVALONdb_12"
 	}
 

@@ -1,5 +1,7 @@
 //得到用户验证方法
 var userDb = require('../../../database/userDb');
+var tokenService = ('../../../../service/tokenService.js');
+var dispatcher = require('../../../../util/dispatcher');
 
 
 module.exports = function(app) {
@@ -13,25 +15,70 @@ var Handler = function(app) {
 
 
 Handler.prototype.loginConnect = function(msg,session,next) {
-	//根据用户的登陆方式来进行登陆验证
+	//得到当前正在运行的connector服务器
+	var did;
+	var username;
+	var password;
+	var c_host;
+	var c_port;
 	var login_type=msg.login_type;
+	var token;
+	var connector;
+
+	var connectors = this.app.getServersByType('connector');
+	if(!connectors || connectors.length === 0) {
+		next(null, {code: 500});
+		return;
+	}
+	//得到connector服务器信息
+	connector = dispatcher.dispatch(connectors)
+	c_host = connector.host;
+	c_port = connector.clientPort;
+
+
+	//2根据用户的登陆方式来进行登陆验证
+	
 	if(login_type) {
 		//使用device id登陆
-		var Did=msg.Did;
+		did=msg.did;
 		userDb.loginByDid(Did,function(didSignal) {
+			//根据结果来判断是否要给予token
+			if(didSignal) {
+				//登陆成功
+				//获得token
+				token=tokenService.createToken("0", "0", did);
+			}
+			else {
+				//登陆失败
+				next(null,{code:500});
+				return;
+			}
+
+
 			//得到 并且返回登陆的结果signal给客户端
-			next(null,{signal : didSignal});
+			next(null,{code:100 token:token host:c_host port:c_port});
 		})
 	}
 	else {
 		//使用username 和 password 登陆
-		var username=msg.username;
-		var password=msg.password;
+		username=msg.username;
+		password=msg.password;
 		userDb.loginByUsername(username,password,function(usernameSignal) {
+			if(usernameSignal) {
+				//登陆成功
+				//获得token
+				token=tokenService.createToken(username, password, "0");
+			}
+			else{
+				//登陆失败
+				next(null,{code:500});
+				return;
+			}
+
 			//得到 并且返回登陆的结果signal给客户端
-			next(null,{signal : usernameSignal});
-		})
+			next(null,{code:100 token:token host:c_host port:c_port});
 
 	}
 
 };
+

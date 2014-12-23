@@ -12,10 +12,10 @@ userDb.loginByUsername = function (username, password, cb) {
 	var args = [username];//用户的user id
 
 	pomelo.app.get('dbclient').query(sql, args, function(err , res) {
-		var signal;
+		
 		if(err !== null) {
 			//当查询出现错误
-			signal=0;
+			cb({signal:-1});
 		} 
 		else {
 			//查询正常
@@ -23,26 +23,24 @@ userDb.loginByUsername = function (username, password, cb) {
 			if (!!res) {
 
 				//得到目标password
-				var pw = res[2];
+				var pw = res[0].password;
 				//进行验证
 				
 				if(password===pw) {
 					//密码相符
-					signal=1;//准许通过
+					cb({signal:1 uid:res[0].uid});
 				}
 				else {
 					//密码不相符
-					signal=2;//不准许通过 因为密码不相符
+					cb({signal:0});
 				}
 			} 
 			else {
 				//说明根本没有这个用户
-				signal=3;//不准许通过 因为用户不存在
+				cb({signal:-1});
 
 			}
 		}
-		//对回调函数进行操作 根据processcode处理结果
-		cb(signal);
 	});
 };
 //设备id进行登陆
@@ -51,26 +49,122 @@ userDb.loginByDid = function (Did, cb) {
 	var args = [Did];//用户的设备id
 
 	pomelo.app.get('dbclient').query(sql,args,function(err, res) {
-		var signal;
 		if(err !== null) {
 			//当查询出现错误
-			signal=0;
+			cb({signal:-1});
 		} 
 		else {
 			//查询正常
 			if (!!res) {
-				signal=1;//有此设备号 所以准许登陆
+				cb({signal:1 uid:res[0].uid});
 			} 
 			else {
-				//说明根本没有这个用户
-				signal=3;//不准许通过 因为设备号不存在   
+				cb({signal:0});  
 			}
 		}
-		//对回调函数进行操作 根据processcode处理结果
-		cb(signal);
 	});
 };
 //尝试注册
+userDb.tryToRegister = function (username, password, did, cb) {
+   //1检查username是重复
+   var sql = 'select * from	User where username = ?';
+   var args = [username];
+
+   pomelo.app.get('dbclient').query(sql,args,function(err, res) {
+		
+		if(err !== null) {
+			//当查询出现错误
+			cb({code : 500});
+		} 
+		else {
+			//查询正常
+			if (!!res) {
+				//有此用户名 所以不允许注册
+				cb({code : 501});
+			} 
+			else {
+				//说明根本没有这个用户 执行注册
+				var rsql = "insert into User ('username', 'password', 'did') values (?, ?, ?)";
+				var rargs = [username, password, did];
+
+				pomelo.app.get('dbclient').query(sql,args,function(err, ires) {
+					if（err !== null) {
+					//插入错误
+					cb({code : 500});
+				}
+				else {
+					if(!!ires) {
+						//查询正常 得到id 根据id计算出uid
+						var uid=0+ires[0].insertId;
+						//更新当前条的uid
+						var usql = 'update t_user set uid=?  where username=?';
+						var uargs = [uid, username];
+						//////////////////////
+						pomelo.app.get('dbclient').query(sql,args,function(err, ures) {
+					      	if（err !== null) {
+							//更新错误
+							cb({code : 500});
+						}
+						else
+						{
+							//更新正常
+							if (!!ures) {
+							cb({code : 100});
+
+							} 
+							else {
+							//说明更新不正常
+							cb({code : 500});
+
+							}
+						}
+
+					    }
+					    /////////////////
+
+					}
+					else {
+						//查询不正常
+						cb(code : 500);
+					}
+				}
+
+
+
+				});
+
+
+
+
+
+				 
+			}
+		}
+		
+	});
+
+
+
+
+}
+
+
+
+//尝试得到player info
+userDb.getPlayerInfoByUid = function (uid, cb)
+{
+	var sql = 'select * from  PlayerInfo where uid = ?';
+	var args = [uid];//用户的user id
+
+	pomelo.app.get('dbclient').query(sql, args, function(err , res) {
+		if(err !== null) {
+			cb(null);
+		} 
+		else {
+			cb(res);
+		}
+	}
+}
 
 
 

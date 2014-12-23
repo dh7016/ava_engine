@@ -12,6 +12,7 @@ var Handler = function(app) {
 
 
 //接入gate
+/*
  Handler.prototype.gateConnect = function(msg,session,next) {
  	//1检查名字 密码是否合格
  	var username=msg.username;
@@ -39,6 +40,7 @@ var Handler = function(app) {
 	next(null, {code: 100, host: login.host, port: login.clientPort});
     
  };
+ */
 
 //得到用户验证方法
 var userDb = require('../../../database/userDb');

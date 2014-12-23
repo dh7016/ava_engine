@@ -1,5 +1,5 @@
 var dispatcher = require('../../../../util/dispatcher');
-var code = require('../../../../util/code');
+var code = require('../../../../acc/code');
 
 module.exports = function(app) {
   return new Handler(app);

@@ -32,7 +32,7 @@ tokenService.createToken = function(username, password, did) {
 
 	return token;
 
-};
+}
 
 //检测是否合法过期
 tokenService.checkToken = function(token, cb) {

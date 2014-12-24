@@ -1,4 +1,4 @@
-var userDb = require('../../../database/userDb');
+
 var tokenService = module.exports;
 
 

@@ -2,6 +2,7 @@
 var userDb = require('../../../database/userDb');
 var tokenService = ('../../../service/tokenService');
 var dispatcher = require('../../../../util/dispatcher');
+var test = require('../../../../acc/test');
 
 
 module.exports = function(app) {
@@ -52,7 +53,7 @@ Handler.prototype.loginConnect = function(msg,session,next) {
 				//获得token
 				//token=tokenService.createToken("0", "0", did);
 				token="sssvdvsrv";
-				tokenService.test();
+				test.test_method();
 			}
 			else {
 				//登陆失败

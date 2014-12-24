@@ -32,6 +32,9 @@ tokenService.createToken = function(username, password, did) {
 	return token;
 
 }
+tokenService.test = function () {
+    console.log(1);
+}
 
 //检测是否合法过期
 tokenService.checkToken = function(token, cb) {

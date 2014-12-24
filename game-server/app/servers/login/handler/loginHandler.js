@@ -50,7 +50,9 @@ Handler.prototype.loginConnect = function(msg,session,next) {
 			if(res.signal===1) {
 				//登陆成功
 				//获得token
-				token=tokenService.createToken("0", "0", did);
+				//token=tokenService.createToken("0", "0", did);
+				token="sssvdvsrv";
+				tokenService.test();
 			}
 			else {
 				//登陆失败

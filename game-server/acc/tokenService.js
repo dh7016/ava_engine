@@ -79,7 +79,7 @@ var tokenEncode = function(password) {
     for(var tra=0; tra<length;tra++){
     	//把password转换成ascii数字
 
-    	pw_result_number+=parseInt(pw_str.charCodeAt(tra))*pow(10,(length-tra-1));
+    	pw_result_number+=parseInt(pw_str.charCodeAt(tra))*Math.pow(10,(length-tra-1));
 
     }
 

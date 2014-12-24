@@ -45,7 +45,7 @@ Handler.prototype.loginConnect = function(msg,session,next) {
 		//使用device id登陆
 		did=msg.did;
 		console.log(did);
-		userDb.loginByDid(Did,function(res) {
+		userDb.loginByDid(did,function(res) {
 			//根据结果来判断是否要给予token
 			if(res.signal===1) {
 				//登陆成功

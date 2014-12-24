@@ -36,13 +36,16 @@ Handler.prototype.loginConnect = function(msg,session,next) {
 	c_port = connector.clientPort;
 
 
+	console.log(msg.did);
+	console.log(login_type);
+
 	//2根据用户的登陆方式来进行登陆验证
 	
-	if(login_type) {
+	/*if(login_type) {
 		//使用device id登陆
 		did=msg.did;
 		console.log(did);
-		/*userDb.loginByDid(Did,function(didSignal) {
+		userDb.loginByDid(Did,function(didSignal) {
 			//根据结果来判断是否要给予token
 			if(didSignal) {
 				//登陆成功
@@ -53,7 +56,7 @@ Handler.prototype.loginConnect = function(msg,session,next) {
 				//登陆失败
 				next(null,{code:500});
 				return;
-			}*/
+			}
 
 
 			//得到 并且返回登陆的结果signal给客户端
@@ -79,7 +82,7 @@ Handler.prototype.loginConnect = function(msg,session,next) {
 			//得到 并且返回登陆的结果signal给客户端
 			next(null,{code:100 token:token host:c_host port:c_port});
 
-	}
+	}*/
 
 };
 

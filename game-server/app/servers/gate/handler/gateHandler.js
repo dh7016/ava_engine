@@ -23,7 +23,7 @@ var Handler = function(app) {
   if(!identity||identity!=="ava")
   {
     console.log("identity");
-    
+
     next(null,{code:500});
     
     return;
@@ -51,6 +51,8 @@ var Handler = function(app) {
  Handler.prototype.test = function (msg,session,next)
  {
     next(null,{info : 'success'});
+    console.log("identity");
+    
  }
 
  /*Handler.prototype.sql_test = function(msg, session ,next)

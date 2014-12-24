@@ -9,7 +9,7 @@ var userDb = require('../../../database/userDb');
 
 
 //根据uid创建一个token
-tokenService.prototype.createToken = function(username, password, did) {
+tokenService.createToken = function(username, password, did) {
 
 	var token;
 	var str;
@@ -35,7 +35,7 @@ tokenService.prototype.createToken = function(username, password, did) {
 };
 
 //检测是否合法过期
-tokenService.prototype.checkToken = function(token, cb) {
+tokenService.checkToken = function(token, cb) {
 	//还原token 得到 日期  以及合法性
 	//1解析token
 	var token_str =String(tokenDecode(token));

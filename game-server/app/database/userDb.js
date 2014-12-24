@@ -45,7 +45,7 @@ userDb.loginByUsername = function (username, password, cb) {
 };
 //设备id进行登陆
 userDb.loginByDid = function (Did, cb) {
-	var sql = 'select * from	User where did = ?';
+	var sql = 'select * from User where did = ?';
 	var args = [Did];//用户的设备id
 
 	pomelo.app.get('dbclient').query(sql,args,function(err, res) {

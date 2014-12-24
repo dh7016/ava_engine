@@ -16,11 +16,16 @@ var Handler = function(app) {
 //接入gate
 
  Handler.prototype.gateConnect = function(msg,session,next) {
+  
+
  	//1检查名字 密码是否合格
  	var identity=msg.identity;
   if(!identity||identity!=="ava")
   {
+    console.log("identity");
+    
     next(null,{code:500});
+    
     return;
   }
    
@@ -28,6 +33,8 @@ var Handler = function(app) {
   //2确认合格 分配一个合适的login server 并且返还给客户端 ip 和 clientport
  var logins = this.app.getServersByType('login');
 	if(!logins || logins.length === 0) {
+    console.log("login");
+
 		next(null, {code: 500});
 		return;
 	}

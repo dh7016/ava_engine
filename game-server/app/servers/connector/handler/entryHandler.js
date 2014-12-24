@@ -57,7 +57,7 @@ Handler.prototype.entry = function(msg, session, next) {
         }
 
 
-    }，
+    },
     //3根据身份验证结果 得到user信息
     function(res,cb)
     {
@@ -71,7 +71,7 @@ Handler.prototype.entry = function(msg, session, next) {
           next(null, {code:500});
           return;
         }
-    }，
+    },
     //4根据信息 配置session
     function(res, cb)
     {
@@ -88,7 +88,7 @@ Handler.prototype.entry = function(msg, session, next) {
       
       //更新离线的session
       self.app.get('sessionService').kick(uid, cb);
-    }，
+    },
     //5绑定新的session
     function(cb) {
       if(!uid) {
@@ -116,7 +116,7 @@ Handler.prototype.entry = function(msg, session, next) {
       return;
     }
 
-    next(null, {code: 100, playerInfo});
+    next(null, {code: 100, playerInfo:playInfo});
   })
 
 };

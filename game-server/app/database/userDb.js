@@ -28,7 +28,7 @@ userDb.loginByUsername = function (username, password, cb) {
 				
 				if(password===pw) {
 					//密码相符
-					cb({signal:1 uid:res[0].uid});
+					cb({signal:1, uid:res[0].uid});
 				}
 				else {
 					//密码不相符
@@ -56,7 +56,7 @@ userDb.loginByDid = function (Did, cb) {
 		else {
 			//查询正常
 			if (!!res) {
-				cb({signal:1 uid:res[0].uid});
+				cb({signal:1, uid:res[0].uid});
 			} 
 			else {
 				cb({signal:0});  
@@ -88,7 +88,7 @@ userDb.tryToRegister = function (username, password, did, cb) {
 				var rargs = [username, password, did];
 
 				pomelo.app.get('dbclient').query(sql,args,function(err, ires) {
-					if（err !== null) {
+					if(err !== null) {
 					//插入错误
 					cb({code : 500});
 				}
@@ -101,7 +101,7 @@ userDb.tryToRegister = function (username, password, did, cb) {
 						var uargs = [uid, username];
 						//////////////////////
 						pomelo.app.get('dbclient').query(sql,args,function(err, ures) {
-					      	if（err !== null) {
+					      	if(err !== null) {
 							//更新错误
 							cb({code : 500});
 						}
@@ -119,13 +119,13 @@ userDb.tryToRegister = function (username, password, did, cb) {
 							}
 						}
 
-					    }
+					    })
 					    /////////////////
 
 					}
 					else {
 						//查询不正常
-						cb(code : 500);
+						cb({code : 500});
 					}
 				}
 
@@ -163,7 +163,7 @@ userDb.getPlayerInfoByUid = function (uid, cb)
 		else {
 			cb(res);
 		}
-	}
+	})
 }
 
 

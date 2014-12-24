@@ -59,12 +59,12 @@ tokenService.prototype.checkToken = function(token, cb) {
 		//说明是设备号登陆
 		//返回did
 
-		cb({result:0 did:arg3});
+		cb({result:0, did:arg3});
 	}
 	else {
 		//说明是用户名 密码登陆
 		//返回username password
-		cb({result:1 username:arg1 password:arg3});
+		cb({result:1, username:arg1, password:arg3});
 	}
 }
 
@@ -75,7 +75,7 @@ var tokenEncode = function(password) {
 	var pw_str=String(password);
     var length=pw_str.length;
     var pw_result_number
-    for(int tra=0; tra<length;tra++) {
+    for(var tra=0; tra<length;tra++){
     	//把password转换成ascii数字
 
     	pw_result_number+=parseInt(pw_str.charCodeAt(tra))*pow(10,(length-tra-1));
@@ -89,7 +89,7 @@ var tokenDecode = function(password) {
 	var pw_str=password.toString();
 	var length=pw_str.length;
 	var pw_result_str;
-	for(int tra=0;tra<length;tra++) {
+	for(var tra=0;tra<length;tra++) {
 		//把password还原
 		pw_result_str+=String.fromCharCode(parseInt(pw_str.charAt(tra)));
 	}

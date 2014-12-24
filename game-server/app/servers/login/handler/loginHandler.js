@@ -1,5 +1,5 @@
 //得到用户验证方法
-//var userDb = require('../../../database/userDb');
+var userDb = require('../../../database/userDb');
 var tokenService = ('../../../../service/tokenService.js');
 var dispatcher = require('../../../../util/dispatcher');
 
@@ -41,7 +41,7 @@ Handler.prototype.loginConnect = function(msg,session,next) {
 
 	//2根据用户的登陆方式来进行登陆验证
 	
-	/*if(login_type) {
+	if(login_type) {
 		//使用device id登陆
 		did=msg.did;
 		console.log(did);
@@ -60,29 +60,30 @@ Handler.prototype.loginConnect = function(msg,session,next) {
 
 
 			//得到 并且返回登陆的结果signal给客户端
-			next(null,{code:100 token:token host:c_host port:c_port});
+			next(null,{code:100, token:token, host:c_host, port:c_port});
 		})
 	}
 	else {
 		//使用username 和 password 登陆
-		username=msg.username;
-		password=msg.password;
-		userDb.loginByUsername(username,password,function(usernameSignal) {
-			if(usernameSignal) {
+		username = msg.username;
+		password = msg.password;
+		userDb.loginByUsername(username, password, function (usernameSignal) {
+			if (usernameSignal) {
 				//登陆成功
 				//获得token
-				token=tokenService.createToken(username, password, "0");
+				token = tokenService.createToken(username, password, "0");
 			}
-			else{
+			else {
 				//登陆失败
-				next(null,{code:500});
+				next(null, {code: 500});
 				return;
 			}
 
 			//得到 并且返回登陆的结果signal给客户端
-			next(null,{code:100 token:token host:c_host port:c_port});
+			next(null, {code: 100, token: token, host: c_host, port: c_port});
 
-	}*/
 
-};
+		})
+	}
+}
 

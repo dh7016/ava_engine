@@ -1,6 +1,6 @@
 //得到用户验证方法
 //var userDb = require('../../../database/userDb');
-//var tokenService = ('../../../../service/tokenService.js');
+var tokenService = ('../../../../service/tokenService.js');
 var dispatcher = require('../../../../util/dispatcher');
 
 

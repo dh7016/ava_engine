@@ -45,9 +45,9 @@ Handler.prototype.loginConnect = function(msg,session,next) {
 		//使用device id登陆
 		did=msg.did;
 		console.log(did);
-		userDb.loginByDid(Did,function(didSignal) {
+		userDb.loginByDid(Did,function(res) {
 			//根据结果来判断是否要给予token
-			if(didSignal) {
+			if(res.signal===1) {
 				//登陆成功
 				//获得token
 				token=tokenService.createToken("0", "0", did);
@@ -67,8 +67,8 @@ Handler.prototype.loginConnect = function(msg,session,next) {
 		//使用username 和 password 登陆
 		username = msg.username;
 		password = msg.password;
-		userDb.loginByUsername(username, password, function (usernameSignal) {
-			if (usernameSignal) {
+		userDb.loginByUsername(username, password, function(res) {
+			if (res.signal===1) {
 				//登陆成功
 				//获得token
 				token = tokenService.createToken(username, password, "0");

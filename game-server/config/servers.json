@@ -1,35 +1,6 @@
 {
   "development":{
     "login": [
-    {"id": "login-server-1", "host": "127.0.0.1", "port": 3522, "clientPort": 3552, "frontend": true}
-    ],
-
-    "gate": [
-    {"id": "gate-server-1", "host": "127.0.0.1", "port": 3521, "clientPort": 3551, "frontend": true}
-    ],
-
-    "connector": [
-    {"id": "connector-server-1", "host": "127.0.0.1", "port": 3520, "clientPort": 3550, "frontend": true}
-    ]
-  },
-  "production":{
-     "login": [
-    {"id": "login-server-1", "host": "127.0.0.1", "port": 3522, "clientPort": 3552, "frontend": true}
-    ],
-    
-    "gate": [
-    {"id": "gate-server-1", "host": "127.0.0.1", "port": 3521, "clientPort": 3551, "frontend": true}
-    ],
-
-    "connector": [
-    {"id": "connector-server-1", "host": "127.0.0.1", "port": 3520, "clientPort": 3550, "frontend": true}
-    ]
-  }
-}
-/*
-{
-  "development":{
-    "login": [
     {"id": "login-server-1", "host": "120.132.48.147", "port": 3522, "clientPort": 3552, "frontend": true}
     ],
 
@@ -59,4 +30,4 @@
 
 
 
-*/
+

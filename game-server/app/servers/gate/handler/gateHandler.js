@@ -16,7 +16,7 @@ var Handler = function(app) {
  Handler.prototype.gateConnect = function(msg,session,next) {
  	//1检查名字 密码是否合格
  	var identity=msg.identity;
-  if(!!!identity||identity!=ava)
+  if(!identity||identity!=="ava")
   {
     next(null,{code:500});
     return;

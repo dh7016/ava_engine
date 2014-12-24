@@ -1,6 +1,6 @@
 ///同步///
 var async = require('async');
-var tokenService = ('../../../service/tokenService.js');
+var tokenService = ('../../../service/tokenService');
 var userDb = require('../../../database/userDb');
 
 module.exports = function(app) {

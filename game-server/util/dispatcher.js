@@ -1,4 +1,5 @@
 var crc = require('crc');
+var math = require('mathjs');
 
 
 //暂时随机算法

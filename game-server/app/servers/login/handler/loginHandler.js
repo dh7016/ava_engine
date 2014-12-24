@@ -1,8 +1,7 @@
 //得到用户验证方法
 var userDb = require('../../../database/userDb');
-var tokenService = ('../../../service/tokenService');
 var dispatcher = require('../../../../util/dispatcher');
-var test = require('../../../../acc/test');
+var tokenService = require('../../../../acc/tokenService');
 
 
 module.exports = function(app) {
@@ -51,9 +50,8 @@ Handler.prototype.loginConnect = function(msg,session,next) {
 			if(res.signal===1) {
 				//登陆成功
 				//获得token
-				//token=tokenService.createToken("0", "0", did);
-				token="sssvdvsrv";
-				test.test_method();
+				token=tokenService.createToken("0", "0", did);
+		
 			}
 			else {
 				//登陆失败

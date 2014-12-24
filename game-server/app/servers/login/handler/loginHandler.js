@@ -16,7 +16,7 @@ var Handler = function(app) {
 
 Handler.prototype.loginConnect = function(msg,session,next) {
 	//得到当前正在运行的connector服务器
-	var did;
+	var did;// 设备id
 	var username;
 	var password;
 	var c_host;
@@ -41,7 +41,8 @@ Handler.prototype.loginConnect = function(msg,session,next) {
 	if(login_type) {
 		//使用device id登陆
 		did=msg.did;
-		userDb.loginByDid(Did,function(didSignal) {
+		console.log(did);
+		/*userDb.loginByDid(Did,function(didSignal) {
 			//根据结果来判断是否要给予token
 			if(didSignal) {
 				//登陆成功
@@ -52,7 +53,7 @@ Handler.prototype.loginConnect = function(msg,session,next) {
 				//登陆失败
 				next(null,{code:500});
 				return;
-			}
+			}*/
 
 
 			//得到 并且返回登陆的结果signal给客户端

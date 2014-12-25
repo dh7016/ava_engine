@@ -34,7 +34,7 @@ Handler.prototype.entry = function(msg, session, next) {
   //同步处理登陆前初始化
   async.waterfall([
     //1验证token
-    function(cd) {
+    function(cb) {
          tokenService.checkToken(token,cb);
     },
     //2根据token验证结果处理授权

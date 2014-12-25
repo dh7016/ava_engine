@@ -1,7 +1,7 @@
 //得到用户验证方法
 var userDb = require('../../../database/userDb');
 var dispatcher = require('../../../../util/dispatcher');
-var tokenService = require('../../../acc/tokenService');
+var tokenService = require('../../../services/tokenService');
 
 
 module.exports = function(app) {

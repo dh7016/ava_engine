@@ -36,10 +36,12 @@ Handler.prototype.entry = function(msg, session, next) {
     //1验证token
     function(cb) {
          tokenService.checkToken(token,cb);
+         console.log(1);
     },
     //2根据token验证结果处理授权
     function(res, cb)
     {
+        console.log(2);
         //检查token验证是否成功
         if(res.result===-1) {
           //token验证没有通过
@@ -61,6 +63,7 @@ Handler.prototype.entry = function(msg, session, next) {
     //3根据身份验证结果 得到user信息
     function(res,cb)
     {
+        console.log(3);
         if (res.signal==1) {
           //说明用户身份验证成功
           uid=res.uid;
@@ -75,6 +78,7 @@ Handler.prototype.entry = function(msg, session, next) {
     //4根据信息 配置session
     function(res, cb)
     {
+      console.log(4);
       if(!!res) {
         //说明获得用户信息成功
         //获得玩家的信息
@@ -91,12 +95,14 @@ Handler.prototype.entry = function(msg, session, next) {
     },
     //5绑定新的session
     function(cb) {
+      console.log(5);
       if(!uid) {
       session.bind(uid, cb);
       }
     }, 
     //6设置新的sessioni信息
     function(cb) {
+      console.log(6);
       if(!playerInfo || playerInfo.length === 0) {
         next(null, {code: 500});
         return;

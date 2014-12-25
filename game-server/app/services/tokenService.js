@@ -88,14 +88,15 @@ var tokenEncode = function(password) {
 
     }
 
-    pw_result_number=parseInt(pw_result_str);
+    pw_result_number=parseInt(pw_result_str)/1000000;
 
 
     return pw_result_number;
 }
 var tokenDecode = function(password) {
 	//把密码从数字变为字符
-	var pw_str=password.toString();
+	var pw_number=password*1000000;
+	var pw_str=pw_number.toString();
 	var pw_code_arr=pw_str.split("35");
 	var length=pw_code_arr.length;
 	var pw_result_str="";

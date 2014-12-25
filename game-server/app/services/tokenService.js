@@ -28,7 +28,7 @@ tokenService.createToken = function(username, password, did) {
 
 	//2转换ascii
 	token=tokenEncode(str).toString();
-	console.log(str);
+	console.log(token);
 
 	return token;
 

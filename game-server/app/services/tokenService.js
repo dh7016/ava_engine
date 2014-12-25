@@ -43,7 +43,7 @@ tokenService.checkToken = function(token, cb) {
 	console.log(token);
 
 	//1解析token
-	var token_str =String(tokenDecode(token));
+	var token_str =tokenDecode(token);
 
 	console.log(token_str);
 
@@ -81,7 +81,7 @@ var tokenEncode = function(password) {
 	//把密码从字符变为数字
 	var pw_str=String(password);
     var length=pw_str.length;
-    var pw_result_number=0;
+    //var pw_result_number=0;
     var pw_result_str="";
     for(var tra=0; tra<length;tra++){
     	//把password转换成ascii数字
@@ -90,15 +90,15 @@ var tokenEncode = function(password) {
 
     }
 
-    pw_result_number=parseInt(pw_result_str);
+    //pw_result_number=parseInt(pw_result_str);
 
 
-    return pw_result_number;
+    return pw_result_str;
 }
 var tokenDecode = function(password) {
 	//把密码从数字变为字符
-	var pw_str=password.toString();
-	var pw_code_arr=pw_str.split("35");
+	//var pw_str=password.toString();
+	var pw_code_arr=password.split("35");
 	var length=pw_code_arr.length;
 	var pw_result_str="";
 	for(var tra=0;tra<length;tra++) {

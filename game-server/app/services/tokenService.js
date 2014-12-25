@@ -16,17 +16,19 @@ tokenService.createToken = function(username, password, did) {
 		//uid就是一个数字 我们暂时用简单的加密方法 uid +当前时间 密码的和 乘以0.5 
 		//1创建密码
 		str=username+'#'+Date.now().toString()+'#'+password;
-		
+
 	}
 	else {
 		//did不等于0 表示使用did模式创立token  格式两个did在头尾
 		//1创建密码
 		str="did#"+Date.now().toString()+'#'+did;
 	}
+	console.log(str);
 
 
 	//2转换ascii
 	token=tokenEncode(str).toString();
+	console.log(str);
 
 	return token;
 

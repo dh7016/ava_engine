@@ -43,6 +43,8 @@ tokenService.checkToken = function(token, cb) {
 	//1解析token
 	var token_str =String(tokenDecode(token));
 
+	console.log(token_str);
+
 	//2分割 得到uid 日期 和 密码
 	var token_split = token_str.split("#");
 	var arg1 = token_split[0];

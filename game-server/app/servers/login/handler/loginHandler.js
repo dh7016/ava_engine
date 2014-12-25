@@ -36,8 +36,6 @@ Handler.prototype.loginConnect = function(msg,session,next) {
 	c_port = connector.clientPort;
 
 
-	console.log(msg.did);
-	console.log(login_type);
 
 	//2根据用户的登陆方式来进行登陆验证
 	

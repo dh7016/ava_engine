@@ -40,6 +40,8 @@ tokenService.test = function () {
 //检测是否合法过期
 tokenService.checkToken = function(token, cb) {
 	//还原token 得到 日期  以及合法性
+	console.log(token);
+
 	//1解析token
 	var token_str =String(tokenDecode(token));
 
@@ -88,15 +90,14 @@ var tokenEncode = function(password) {
 
     }
 
-    pw_result_number=parseInt(pw_result_str)/1000000;
+    pw_result_number=parseInt(pw_result_str);
 
 
     return pw_result_number;
 }
 var tokenDecode = function(password) {
 	//把密码从数字变为字符
-	var pw_number=password*1000000;
-	var pw_str=pw_number.toString();
+	var pw_str=password.toString();
 	var pw_code_arr=pw_str.split("35");
 	var length=pw_code_arr.length;
 	var pw_result_str="";

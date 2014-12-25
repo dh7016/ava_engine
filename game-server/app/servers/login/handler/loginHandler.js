@@ -50,7 +50,7 @@ Handler.prototype.loginConnect = function(msg,session,next) {
 			if(res.signal===1) {
 				//登陆成功
 				//获得token
-				token=tokenService.createToken("0", "0", did);
+				token=tokenService.createToken(0, 0, did);
 		
 			}
 			else {
@@ -72,7 +72,7 @@ Handler.prototype.loginConnect = function(msg,session,next) {
 			if (res.signal===1) {
 				//登陆成功
 				//获得token
-				token = tokenService.createToken(username, password, "0");
+				token = tokenService.createToken(username, password, 0);
 			}
 			else {
 				//登陆失败

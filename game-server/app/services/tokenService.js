@@ -40,12 +40,12 @@ tokenService.test = function () {
 //检测是否合法过期
 tokenService.checkToken = function(token, cb) {
 	//还原token 得到 日期  以及合法性
-	console.log(token);
+	
 
 	//1解析token
 	var token_str =tokenDecode(token);
 
-	console.log(token_str);
+	
 
 	//2分割 得到uid 日期 和 密码
 	var token_split = token_str.split("#");
@@ -56,7 +56,7 @@ tokenService.checkToken = function(token, cb) {
 	
 	if(Date.now()-arg2>=100000) {
 		//说明过期
-		cb({result:-1});
+		cb(null, {result:-1});
 		return;
 	}
 
@@ -66,12 +66,12 @@ tokenService.checkToken = function(token, cb) {
 		//说明是设备号登陆
 		//返回did
 
-		cb({result:0, did:arg3});
+		cb(null, {result:0, did:arg3});
 	}
 	else {
 		//说明是用户名 密码登陆
 		//返回username password
-		cb({result:1, username:arg1, password:arg3});
+		cb(null, {result:1, username:arg1, password:arg3});
 	}
 }
 

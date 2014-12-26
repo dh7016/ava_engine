@@ -21,7 +21,7 @@ var Handler = function(app) {
  */
 Handler.prototype.entry = function(msg, session, next) {
   //得到玩家的token
-  var token=msg.token;
+  var token=msg.token, self=this;
   //处理token
   if(!token) {
   	//没有token
@@ -96,7 +96,7 @@ Handler.prototype.entry = function(msg, session, next) {
     {
       console.log(4);
       console.log(res);
-      if(!!res) {
+      if(res) {
         //说明获得用户信息成功
         //获得玩家的信息
          playInfo=res;

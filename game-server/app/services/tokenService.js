@@ -62,7 +62,7 @@ tokenService.checkToken = function(token, cb) {
 
 
 
-	if(arg1===arg3) {
+	if(arg1==="did") {
 		//说明是设备号登陆
 		//返回did
 

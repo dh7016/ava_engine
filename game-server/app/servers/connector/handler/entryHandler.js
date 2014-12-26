@@ -99,7 +99,7 @@ Handler.prototype.entry = function(msg, session, next) {
       if(res) {
         //说明获得用户信息成功
         //获得玩家的信息
-         playInfo=res;
+         playerInfo=res;
       }
       else {
         //说明获得用户信息失败
@@ -139,7 +139,7 @@ Handler.prototype.entry = function(msg, session, next) {
       return;
     }
 
-    next(null, {code: 100, playerInfo:playInfo});
+    next(null, {code: 100, playerInfo:playerInfo[0]});
   })
 
 };

@@ -113,7 +113,7 @@ Handler.prototype.entry = function(msg, session, next) {
     //5绑定新的session
     function(cb) {
       console.log(5);
-      if(!uid) {
+      if(uid) {
       session.bind(uid, cb);
       }
     }, 

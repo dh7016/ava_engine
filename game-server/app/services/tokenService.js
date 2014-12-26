@@ -85,7 +85,7 @@ var tokenEncode = function(password) {
     var pw_result_str="";
     for(var tra=0; tra<length;tra++){
     	//把password转换成ascii数字
-    	pw_result_str+=pw_str.charCodeAt(tra).toString()+"35";
+    	pw_result_str+=pw_str.charCodeAt(tra).toString()+"36";
     	//pw_result_number+=parseInt(pw_str.charCodeAt(tra))*Math.pow(10,(length-tra-1));
 
     }
@@ -98,7 +98,7 @@ var tokenEncode = function(password) {
 var tokenDecode = function(password) {
 	//把密码从数字变为字符
 	//var pw_str=password.toString();
-	var pw_code_arr=password.split("35");
+	var pw_code_arr=password.split("36");
 	var length=pw_code_arr.length;
 	var pw_result_str="";
 	for(var tra=0;tra<length;tra++) {

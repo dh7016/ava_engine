@@ -62,6 +62,8 @@ userDb.loginByDid = function (Did, cb) {
 				
 			} 
 			else {
+
+				console.log(100010);
 				console.log(res);
 				cb({signal:1, uid:res[0].uid});  
 			}

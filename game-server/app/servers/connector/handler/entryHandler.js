@@ -2,6 +2,7 @@
 var async = require('async');
 var tokenService = require('../../../services/tokenService');
 var userDb = require('../../../database/userDb');
+var logger = require('pomelo-logger').getLogger(__filename);
 
 module.exports = function(app) {
   return new Handler(app);
@@ -149,13 +150,13 @@ var onUserLeave = function (app, session, reason) {
     return;
   }
 
-  utils.myPrint('1 ~ OnUserLeave is running ...');
-  app.rpc.area.playerRemote.playerLeave(session, {playerId: session.get('playerId'), instanceId: session.get('instanceId')}, function(err){
+  console.log('1 ~ OnUserLeave is running ...');
+  /*app.rpc.area.playerRemote.playerLeave(session, {playerId: session.get('playerId'), instanceId: session.get('instanceId')}, function(err){
     if(!!err){
       logger.error('user leave error! %j', err);
     }
   });
-  app.rpc.chat.chatRemote.kick(session, session.uid, null);
+  //app.rpc.chat.chatRemote.kick(session, session.uid, null);*/
 };
 
 

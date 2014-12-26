@@ -74,10 +74,15 @@ Handler.prototype.entry = function(msg, session, next) {
         if (res.signal==1) {
           //说明用户身份验证成功
           uid=res.uid;
-          userDb.getPlayerInfoByUid(uid, cb);
+          userDb.getPlayerInfoByUid(uid, function(res) {
+              //返还用户信息
+              cb(null,res);
+            
+
+          });
         }
         else {
-          //说明用户身份验证失败
+          //说明用户身份验证失败 终止
           next(null, {code:500});
           return;
         }
@@ -94,7 +99,7 @@ Handler.prototype.entry = function(msg, session, next) {
       else {
         //说明获得用户信息失败
         next(null, {code:500});
-
+        return；
       }
       
       //更新离线的session

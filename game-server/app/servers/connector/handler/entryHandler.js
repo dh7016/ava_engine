@@ -40,11 +40,14 @@ Handler.prototype.entry = function(msg, session, next) {
             cb(null,res);
          });
          console.log(1);
+
     },
     //2根据token验证结果处理授权
     function(res, cb)
     {
         console.log(2);
+        console.log(res);
+
         //检查token验证是否成功
         if(res.result===-1) {
           //token验证没有通过
@@ -71,6 +74,7 @@ Handler.prototype.entry = function(msg, session, next) {
     function(res,cb)
     {
         console.log(3);
+        console.log(res);
         if (res.signal==1) {
           //说明用户身份验证成功
           uid=res.uid;
@@ -91,6 +95,7 @@ Handler.prototype.entry = function(msg, session, next) {
     function(res, cb)
     {
       console.log(4);
+      console.log(res);
       if(!!res) {
         //说明获得用户信息成功
         //获得玩家的信息
@@ -99,7 +104,7 @@ Handler.prototype.entry = function(msg, session, next) {
       else {
         //说明获得用户信息失败
         next(null, {code:500});
-        return；
+        return;
       }
       
       //更新离线的session

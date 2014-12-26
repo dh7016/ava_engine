@@ -18,12 +18,19 @@ userDb.loginByUsername = function (username, password, cb) {
 			cb({signal:-1});
 		} 
 		else {
-			//查询正常
-			var pw;
-			if (!!res) {
+			
+			if (!res) {
+
+				//说明根本没有这个用户
+				cb({signal:-1});
+			} 
+			else {
+				
+				//查询正常
+				var pw;
 
 				//得到目标password
-				var pw = res[0].password;
+				pw = res[0].password;
 				//进行验证
 				
 				if(password===pw) {
@@ -34,11 +41,6 @@ userDb.loginByUsername = function (username, password, cb) {
 					//密码不相符
 					cb({signal:0});
 				}
-			} 
-			else {
-				//说明根本没有这个用户
-				cb({signal:-1});
-
 			}
 		}
 	});
@@ -55,11 +57,12 @@ userDb.loginByDid = function (Did, cb) {
 		} 
 		else {
 			//查询正常
-			if (!!res) {
-				cb({signal:1, uid:res[0].uid});
+			if (!res) {
+				cb({signal:0});
+				
 			} 
 			else {
-				cb({signal:0});  
+				cb({signal:1, uid:res[0].uid});  
 			}
 		}
 	});

@@ -35,7 +35,10 @@ Handler.prototype.entry = function(msg, session, next) {
   async.waterfall([
     //1验证token
     function(cb) {
-         tokenService.checkToken(token,cb);
+         //检查token是否合法
+         tokenService.checkToken(token,function(res) {
+            cb(null,res);
+         });
          console.log(1);
     },
     //2根据token验证结果处理授权
@@ -51,11 +54,15 @@ Handler.prototype.entry = function(msg, session, next) {
         }
         else if(res.result==0) {
           //token验证通过 did登陆
-          userDb.loginByDid(res.did, cb);
+          userDb.loginByDid(res.did, function(res) {
+            cb(null,res);
+          });
         }
         else {
           //token验证通过 username password登陆
-          userDb.loginByUsername(res.username, res.password, cb);
+          userDb.loginByUsername(res.username, res.password, function(res){
+            cb(null,res);
+          });
         }
 
 

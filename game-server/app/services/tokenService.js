@@ -56,7 +56,7 @@ tokenService.checkToken = function(token, cb) {
 	
 	if(Date.now()-arg2>=100000) {
 		//说明过期
-		cb(null, {result:-1});
+		cb({result:-1});
 		return;
 	}
 
@@ -66,12 +66,12 @@ tokenService.checkToken = function(token, cb) {
 		//说明是设备号登陆
 		//返回did
 
-		cb(null, {result:0, did:arg3});
+		cb({result:0, did:arg3});
 	}
 	else {
 		//说明是用户名 密码登陆
 		//返回username password
-		cb(null, {result:1, username:arg1, password:arg3});
+		cb({result:1, username:arg1, password:arg3});
 	}
 }
 

@@ -86,10 +86,10 @@ var tokenEncode = function(password) {
     for(var tra=0; tra<length;tra++){
     	//把password转换成ascii数字
     	if(tra===length-1) {
-    		pw_result_str+=pw_str.charCodeAt(tra).toString()+"36";
+    		pw_result_str+=pw_str.charCodeAt(tra).toString();
     	}
     	else {
-    		pw_result_str+=pw_str.charCodeAt(tra).toString();
+    		pw_result_str+=pw_str.charCodeAt(tra).toString()+"36";
     	}
     	//pw_result_number+=parseInt(pw_str.charCodeAt(tra))*Math.pow(10,(length-tra-1));
 

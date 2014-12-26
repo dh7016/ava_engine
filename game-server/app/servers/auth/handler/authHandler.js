@@ -12,8 +12,25 @@ var Handler = function(app) {
   this.app = app;
 };
 
+//did注册
+Handler.prototype.registerByDid = function(msg,session,next) {
 
+	this.app.rpc.auth.authRemote.registerByDid(msg.did, function(res) {
+		if(!!res) {
+		next(null,res);//res 内包含code
+		}
+	});
+}
+//username password 注册
+Handler.prototype.registerByUsername = function(msg,session,next) {
+	this.app.rpc.auth.authRemote.registerByUsername(msg.username, msg.password, msg.did, msg.email,function(res) {
+		if(!!res) {
+		next(null,res);//res 内包含code
+		}
+	});
+}
 
+//登陆
 Handler.prototype.loginConnect = function(msg,session,next) {
 	//得到当前正在运行的connector服务器
 	var did;// 设备id

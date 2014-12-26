@@ -161,6 +161,10 @@ var onUserLeave = function (app, session, reason) {
 
 
 
+
+
+
+
 /**
  * Publish route for mqtt connector.
  *
@@ -198,10 +202,8 @@ Handler.prototype.subscribe = function(msg, session, next) {
 Handler.prototype.loadConfig = function (msg, session, next) {
 
 	//得到配置文件
-    var gameConfig={config:"cwnlci;jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
-    jjjjjjjjjjjjjjjjjjjjjjjjjjjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
-    kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
-    kkkkkkkkkkkkkkkkkkkkkkkk"};
+    var gameConfig={config:"cwnlcijjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj"};
+
     //返回配置文件
     next(null,gameConfig);
 

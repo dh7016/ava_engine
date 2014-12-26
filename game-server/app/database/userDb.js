@@ -1,4 +1,5 @@
 //得到底层
+var async = require('async');
 var pomelo = require('pomelo');
 
 
@@ -154,6 +155,178 @@ userDb.tryToRegister = function (username, password, did, cb) {
 
 
 }
+////注册////
+userDb.registerByDid = function (did, cb) {
+	var sql, args, code;
+	async.waterfall([
+			//1检查did是否合法
+			function(cb) {
+				//是否有重复did
+				sql = 'select * from  User where did = ?';
+  				args = [did];
+
+  				 pomelo.app.get('dbclient').query(sql,args,function(err, res) {
+  				 	if(err) {
+  				 		cb(null,false);
+  				 		return;
+  				 	}
+  				 	if(!res[0]) {
+  				 		//说明当前did没有注册
+  				 		cb(null,true);
+  				 	}
+  				 	else {
+  				 		//说明当前did已经注册
+  				 		cb(null,false)
+  				 	}
+  				 })
+
+			},
+			//2尝试插入did
+			function(res, cb) {
+				if(res) {
+					//说明可以注册did
+					sql = "insert into User ('did') values (?)";
+					args = [did];
+					pomelo.app.get('dbclient').query(sql,args,function(err, res) {
+  				 		if(err) {
+  				 			cb(null,false);
+  				 			code:500;
+  				 			return;
+  				 		}
+  				 		if(!res[0]) {
+  				 			//说明注册成功
+  				 			cb(null,true);
+  				 			code=100;
+  				 		}
+  				 		else {
+  				 			//说明注册失败
+  				 			cb(null,false);
+  				 			code=500;
+  				 		}
+  					 })
+
+
+				}
+				else {
+					code=500;
+					cb(null,false);
+				}
+			}],
+		function(err) {
+   		 if(err) {
+      		next(err, {code: 500});
+     		 return;
+   		 }
+
+    	next(null, {code: code});
+    	//根据code来得到是否注册的结果
+ 	 })
+}
+userDb.registerByUsername = function (username, password, did, email, cb) {
+	var sql, args, code;
+	async.waterfall([
+		//1检查是否有用户名重复
+		function(cb) {
+			sql = 'select * from  User where username = ?';
+  			args = [username];
+  			 pomelo.app.get('dbclient').query(sql,args,function(err, res) {
+  				 	if(err) {
+  				 		cb(null,false);
+  				 		return;
+  				 	}
+  				 	if(!res[0]) {
+  				 		//说明当前did没有注册
+  				 		cb(null,true);
+  				 	}
+  				 	else {
+  				 		//说明当前did已经注册
+  				 		cb(null,false)
+  				 	}
+  				 })
+
+		},			
+		//2尝试插入username 和 password did
+		function(res, cb) {
+			if(res) {
+					//说明可以注册did
+					sql = "insert into User ('username', 'password', 'did', email) values (?, ?, ?, ?)";
+					args = [username, password, did, email];
+					pomelo.app.get('dbclient').query(sql,args,function(err, res) {
+  				 		if(err) {
+  				 			cb(null,res);
+  				 			code:500;
+  				 			return;
+  				 		}
+  				 		if(!res[0]) {
+  				 			//说明注册成功
+  				 			cb(null,res);
+  				 			code=100;
+  				 		}
+  				 		else {
+  				 			//说明注册失败
+  				 			cb(null,res);
+  				 			code=500;
+  				 		}
+  					 })
+
+
+				}
+			else {
+				cb(null,false);
+				code=500;
+				return;
+			}
+		},
+		//3更新uid
+		function(res, cb) {
+			if(!res) {
+				//添加失败
+				code=500;
+				return;
+			}
+			else {
+				//添加成功
+				//进一步更新uid 
+				var uid=0+res[0].insertId;
+				//更新当前条的uid
+				sql = 'update User set uid=?  where username=?';
+				args = [uid, username];
+				//////////////////////
+				pomelo.app.get('dbclient').query(sql,args,function(err, res) {
+				      	if(err) {
+						//更新错误
+							cb(null,false);
+							code=500;
+						}
+						else
+						{
+							//更新正常
+							if (res[0]) {
+							cb(null,true)
+							code=100;
+							} 
+							else {
+							//说明更新不正常
+							cb(null,false);
+							code=500;
+							}
+						}
+			    })
+			}
+
+		}],function(err) {
+   		 if(err) {
+      		next(err, {code: 500});
+     		 return;
+   		 }
+
+    	next(null, {code: code});
+    	//code决定注册是否成功
+ 	 })
+
+}
+
+////////////////
 
 
 

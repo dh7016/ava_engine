@@ -41,11 +41,11 @@ tokenService.test = function () {
 tokenService.checkToken = function(token, cb) {
 	//还原token 得到 日期  以及合法性
 	
-
+	console.log(token);
 	//1解析token
 	var token_str =tokenDecode(token);
 
-	
+	console.log(token_str);
 
 	//2分割 得到uid 日期 和 密码
 	var token_split = token_str.split("#");

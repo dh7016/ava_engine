@@ -1,6 +1,6 @@
 {
   "development":{
-    "login": [
+    "auth": [
     {"id": "login-server-1", "host": "120.132.48.147", "port": 3522, "clientPort": 3552, "frontend": true}
     ],
 
@@ -13,7 +13,7 @@
     ]
   },
   "production":{
-     "login": [
+     "auth": [
     {"id": "login-server-1", "host": "120.132.48.147", "port": 3522, "clientPort": 3552, "frontend": true}
     ],
     

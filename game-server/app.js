@@ -17,7 +17,7 @@ app.configure('production|development', function(){
 });
 
 //mysql连接点
-app.configure('production|development', 'gate|connector|login' , function(){
+app.configure('production|development', 'gate|connector|auth' , function(){
 
       var dbclient = require('./app/database/mySql/mySql').init(app);
       app.set('dbclient', dbclient); 
@@ -70,7 +70,7 @@ app.configure('production|development', 'gate', function(){
 });
 
 //login server
-app.configure('production|development', 'login', function(){
+app.configure('production|development', 'auth', function(){
   app.set('connectorConfig',
     {
       connector : pomelo.connectors.hybridconnector,

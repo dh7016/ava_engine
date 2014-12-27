@@ -27,13 +27,13 @@ var Handler = function(app) {
    
 
   //2确认合格 分配一个合适的login server 并且返还给客户端 ip 和 clientport
- var logins = this.app.getServersByType('login');
-	if(!logins || logins.length === 0) {
+ var auths = this.app.getServersByType('auth');
+	if(!auths || auths.length === 0) {
 		next(null, {code: 500});
 		return;
 	}
 
-	var login = dispatcher.dispatch(logins);
+	var login = dispatcher.dispatch(auths);
 	next(null, {code: 100, host: login.host, port: login.clientPort});
  };
  

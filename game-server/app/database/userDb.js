@@ -75,6 +75,7 @@ userDb.loginByDid = function (Did, cb) {
 
 ////注册////
 userDb.registerByDid = function (did, cb) {
+	console.log("we got here");
 	var sql, args, code;
 	async.waterfall([
 			//1检查did是否合法

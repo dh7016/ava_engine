@@ -41,6 +41,7 @@ Handler.prototype.loginConnect = function(msg,session,next) {
 	var login_type=msg.login_type;
 	var token;
 	var connector;
+	var self=this;
 
 	var connectors = this.app.getServersByType('connector');
 	if(!connectors || connectors.length === 0) {
@@ -71,7 +72,7 @@ Handler.prototype.loginConnect = function(msg,session,next) {
 			else {
 				//登陆失败
 				// 尝试注册这个did
-				this.app.rpc.auth.authRemote.registerByDid(session, did,function(res) {
+				self.app.rpc.auth.authRemote.registerByDid(session, did,function(res) {
 					if(!res) {
 						//如果没有返回结果 说明失败
 						next(null,{code:500});

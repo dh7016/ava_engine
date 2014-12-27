@@ -2,7 +2,7 @@
 var async = require('async');
 var tokenService = require('../../../services/tokenService');
 var userDb = require('../../../database/userDb');
-var logger = require('pomelo-logger').getLogger(__filename);
+//var logger = require('pomelo-logger').getLogger(__filename);
 
 module.exports = function(app) {
   return new Handler(app);

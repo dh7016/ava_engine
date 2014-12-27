@@ -72,89 +72,7 @@ userDb.loginByDid = function (Did, cb) {
 		}
 	});
 };
-//尝试注册
-userDb.tryToRegister = function (username, password, did, cb) {
-   //1检查username是重复
-   var sql = 'select * from	User where username = ?';
-   var args = [username];
 
-   pomelo.app.get('dbclient').query(sql,args,function(err, res) {
-		
-		if(err !== null) {
-			//当查询出现错误
-			cb({code : 500});
-		} 
-		else {
-			//查询正常
-			if (!!res) {
-				//有此用户名 所以不允许注册
-				cb({code : 501});
-			} 
-			else {
-				//说明根本没有这个用户 执行注册
-				var rsql = "insert into User ('username', 'password', 'did') values (?, ?, ?)";
-				var rargs = [username, password, did];
-
-				pomelo.app.get('dbclient').query(sql,args,function(err, ires) {
-					if(err !== null) {
-					//插入错误
-					cb({code : 500});
-				}
-				else {
-					if(!!ires) {
-						//查询正常 得到id 根据id计算出uid
-						var uid=0+ires[0].insertId;
-						//更新当前条的uid
-						var usql = 'update t_user set uid=?  where username=?';
-						var uargs = [uid, username];
-						//////////////////////
-						pomelo.app.get('dbclient').query(sql,args,function(err, ures) {
-					      	if(err !== null) {
-							//更新错误
-							cb({code : 500});
-						}
-						else
-						{
-							//更新正常
-							if (!!ures) {
-							cb({code : 100});
-
-							} 
-							else {
-							//说明更新不正常
-							cb({code : 500});
-
-							}
-						}
-
-					    })
-					    /////////////////
-
-					}
-					else {
-						//查询不正常
-						cb({code : 500});
-					}
-				}
-
-
-
-				});
-
-
-
-
-
-				 
-			}
-		}
-		
-	});
-
-
-
-
-}
 ////注册////
 userDb.registerByDid = function (did, cb) {
 	var sql, args, code;
@@ -166,6 +84,7 @@ userDb.registerByDid = function (did, cb) {
   				args = [did];
 
   				 pomelo.app.get('dbclient').query(sql,args,function(err, res) {
+  				 	console(res);
   				 	if(err) {
   				 		cb(null,false);
   				 		return;
@@ -188,6 +107,7 @@ userDb.registerByDid = function (did, cb) {
 					sql = "insert into User ('did') values (?)";
 					args = [did];
 					pomelo.app.get('dbclient').query(sql,args,function(err, res) {
+						console(res);
   				 		if(err) {
   				 			cb(null,false);
   				 			code:500;

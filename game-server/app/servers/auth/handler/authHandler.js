@@ -60,7 +60,6 @@ Handler.prototype.loginConnect = function(msg,session,next) {
 	if(login_type) {
 		//使用device id登陆
 		did=msg.did;
-		console.log(did);
 		userDb.loginByDid(did,function(res) {
 			//根据结果来判断是否要给予token
 			if(res.signal===1) {
@@ -74,7 +73,7 @@ Handler.prototype.loginConnect = function(msg,session,next) {
 			else {
 				//登陆失败
 				// 尝试注册这个did
-				self.app.rpc.auth.authRemote.registerByDid(session, did,function(res) {
+				self.app.rpc.auth.authRemote.registerByDid(session, did, function(res) {
 					if(!res) {
 						//如果没有返回结果 说明失败
 						next(null,{code:500});

@@ -67,6 +67,8 @@ Handler.prototype.loginConnect = function(msg,session,next) {
 				//登陆成功
 				//获得token
 				token=tokenService.createToken(0, 0, did);
+				//得到 并且返回登陆的结果signal给客户端
+				next(null,{code:100, token:token, host:c_host, port:c_port});
 		
 			}
 			else {
@@ -97,8 +99,7 @@ Handler.prototype.loginConnect = function(msg,session,next) {
 			}
 
 
-			//得到 并且返回登陆的结果signal给客户端
-			next(null,{code:100, token:token, host:c_host, port:c_port});
+			
 		})
 	}
 	else {

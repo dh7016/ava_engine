@@ -70,9 +70,29 @@ Handler.prototype.loginConnect = function(msg,session,next) {
 			}
 			else {
 				//登陆失败
-				console.log(1985);
-				next(null,{code:500});
-				return;
+				// 尝试注册这个did
+				this.app.rpc.auth.authRemote.registerByDid(did,function(res) {
+					if(!res) {
+						//如果没有返回结果 说明失败
+						next(null,{code:500});
+						return;
+					}
+					else {
+						if(res.code==100) {
+							//说明注册did成功 通知客户端重新登陆
+							next(null,{code:101});
+						}
+						else {
+							//说明注册失败
+							next(null,{code:500});
+							return;
+						}
+
+					}
+				});
+
+
+				
 			}
 
 

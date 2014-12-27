@@ -218,7 +218,8 @@ userDb.registerByDid = function (did, cb) {
      		 return;
    		 }
 
-    	next(null, {code: code});
+    	//next(null, {code: code});
+    	cb({code:code});
     	//根据code来得到是否注册的结果
  	 })
 }

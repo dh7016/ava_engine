@@ -85,7 +85,7 @@ userDb.registerByDid = function (did, cb) {
   				args = [did];
 
   				 pomelo.app.get('dbclient').query(sql,args,function(err, res) {
-  				 	console(res);
+  				 	console.log(res);
   				 	if(err) {
   				 		cb(null,false);
   				 		return;
@@ -108,7 +108,7 @@ userDb.registerByDid = function (did, cb) {
 					sql = "insert into User ('did') values (?)";
 					args = [did];
 					pomelo.app.get('dbclient').query(sql,args,function(err, res) {
-						console(res);
+						console.log(res);
   				 		if(err) {
   				 			cb(null,false);
   				 			code:500;

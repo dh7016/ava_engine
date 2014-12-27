@@ -71,7 +71,7 @@ Handler.prototype.loginConnect = function(msg,session,next) {
 			else {
 				//登陆失败
 				// 尝试注册这个did
-				this.app.rpc.auth.authRemote.registerByDid(did,function(res) {
+				app.rpc.auth.authRemote.registerByDid(session, did,function(res) {
 					if(!res) {
 						//如果没有返回结果 说明失败
 						next(null,{code:500});

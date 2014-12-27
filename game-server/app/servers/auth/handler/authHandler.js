@@ -70,6 +70,7 @@ Handler.prototype.loginConnect = function(msg,session,next) {
 			}
 			else {
 				//登陆失败
+				console.log(1985);
 				next(null,{code:500});
 				return;
 			}

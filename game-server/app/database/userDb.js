@@ -58,7 +58,7 @@ userDb.loginByDid = function (Did, cb) {
 		} 
 		else {
 			//查询正常
-			if (!res) {
+			if (!res[0]) {
 				cb({signal:0});
 				
 			} 

@@ -113,7 +113,7 @@ userDb.registerByDid = function (did, cb) {
   				 			console.log("way1");
   				 			return;
   				 		}
-  				 		if(!res[0]) {
+  				 		if(!!res) {
   				 			//说明注册成功
   				 			cb(null,true);
   				 			code=100;

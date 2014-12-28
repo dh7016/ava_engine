@@ -115,23 +115,17 @@ userDb.registerByDid = function (did, cb) {
 						console.log(res);
   				 	console.log(res.length);
 
-  				 		if(err) {
+  				 		if(err!==null) {
   				 			cb(null,false);
   				 			code:500;
   				 			console.log("way1");
   				 			return;
   				 		}
-  				 		if(!!res&&res.length>0) {
+  				 		else {
   				 			//说明注册成功
   				 			cb(null,true);
   				 			code=101;//说明单项操作成功
   				 			console.log("way2");
-  				 		}
-  				 		else {
-  				 			//说明注册失败
-  				 			cb(null,false);
-  				 			code=500;
-  				 			console.log("way3");
   				 		}
   					 })
 
@@ -158,7 +152,7 @@ userDb.registerByDid = function (did, cb) {
 				args = [uid, 10000, 10000];
 				//////////////////////
 				pomelo.app.get('dbclient').query(sql,args,function(err, res) {
-				      	if(err) {
+				      	if(err!=null) {
 						//更新错误
 							cb(null,false);
 							code=500;
@@ -166,15 +160,9 @@ userDb.registerByDid = function (did, cb) {
 						else
 						{
 							//更新正常
-							if (!!res&&res.length>0) {
 							cb(null,true)
 							code=100;
-							} 
-							else {
-							//说明更新不正常
-							cb(null,false);
-							code=500;
-							}
+							
 						}
 			    })
 			}
@@ -221,21 +209,17 @@ userDb.registerByUsername = function (username, password, did, email, cb) {
 					sql = 'insert into User (uid, username, password, did, email) values (null, ?, ?, ?, ?)';
 					args = [username, password, did, email];
 					pomelo.app.get('dbclient').query(sql,args,function(err, res) {
-  				 		if(err) {
+  				 		if(err!==null) {
   				 			cb(null,res);
   				 			code:500;
   				 			return;
   				 		}
-  				 		if(!!res&&res.length>0) {
+  				 		else {
   				 			//说明注册成功
   				 			cb(null,res);
-  				 			code=100;
+  				 			code=101;
   				 		}
-  				 		else {
-  				 			//说明注册失败
-  				 			cb(null,res);
-  				 			code=500;
-  				 		}
+  				 	
   					 })
 
 
@@ -263,7 +247,7 @@ userDb.registerByUsername = function (username, password, did, email, cb) {
 				args = [uid, 10000, 10000];
 				//////////////////////
 				pomelo.app.get('dbclient').query(sql,args,function(err, res) {
-				      	if(err) {
+				      	if(err!==null) {
 						//更新错误
 							cb(null,false);
 							code=500;
@@ -271,15 +255,8 @@ userDb.registerByUsername = function (username, password, did, email, cb) {
 						else
 						{
 							//更新正常
-							if (!!res&&res.length>0) {
 							cb(null,true)
 							code=100;
-							} 
-							else {
-							//说明更新不正常
-							cb(null,false);
-							code=500;
-							}
 						}
 			    })
 			}

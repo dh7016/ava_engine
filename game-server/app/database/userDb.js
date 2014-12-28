@@ -78,7 +78,7 @@ userDb.loginByDid = function (Did, cb) {
 ////注册////
 userDb.registerByDid = function (did, cb) {
 	console.log("we got here");
-	var sql, args, code;
+	var sql, args, code, uid;
 	async.waterfall([
 			//1检查did是否合法
 			function(cb) {
@@ -125,6 +125,7 @@ userDb.registerByDid = function (did, cb) {
   				 			//说明注册成功
   				 			cb(null,true);
   				 			code=101;//说明单项操作成功
+  				 			uid=res.insertId;
   				 			console.log("way2");
   				 		}
   					 })
@@ -145,8 +146,6 @@ userDb.registerByDid = function (did, cb) {
 			}
 			else {
 				//添加成功
-				//进一步更新uid 
-				var uid=res.insertId;
 				//更新当前条的uid
 				sql = 'insert into PlayerInfo ( uid, gold, diamond ) values (?, ?, ?)';
 				args = [uid, 10000, 10000];
@@ -180,7 +179,7 @@ userDb.registerByDid = function (did, cb) {
  	 })
 }
 userDb.registerByUsername = function (username, password, did, email, cb) {
-	var sql, args, code;
+	var sql, args, code, uid;
 	async.waterfall([
 		//1检查是否有用户名重复
 		function(cb) {
@@ -218,6 +217,7 @@ userDb.registerByUsername = function (username, password, did, email, cb) {
   				 			//说明注册成功
   				 			cb(null,res);
   				 			code=101;
+  				 			uid=res.insertId;
   				 		}
   				 	
   					 })
@@ -240,8 +240,7 @@ userDb.registerByUsername = function (username, password, did, email, cb) {
 			else {
 				//添加成功
 				//添加成功
-				//进一步更新uid 
-				var uid=res.insertId;
+				
 				//更新当前条的uid
 				sql = 'insert into PlayerInfo ( uid, gold, diamond ) values (?, ?, ?)';
 				args = [uid, 10000, 10000];

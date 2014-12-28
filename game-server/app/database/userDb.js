@@ -87,6 +87,9 @@ userDb.registerByDid = function (did, cb) {
   				args = [did];
 
   				 pomelo.app.get('dbclient').query(sql,args,function(err, res) {
+  				 	console.log(res);
+  				 	console.log(res.length);
+
   				 	if(err !== null) {
   				 		cb(null,false);
   				 		return;

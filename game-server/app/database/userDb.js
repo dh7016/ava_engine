@@ -148,7 +148,7 @@ userDb.registerByDid = function (did, cb) {
 				var uid=res.insertId;
 				//更新当前条的uid
 				sql = 'update User set uid=?  where id=?';
-				args = [uid, res.insertId];
+				args = [uid, uid];
 				//////////////////////
 				pomelo.app.get('dbclient').query(sql,args,function(err, res) {
 				      	if(err) {
@@ -252,7 +252,7 @@ userDb.registerByUsername = function (username, password, did, email, cb) {
 				var uid=res.insertId;
 				//更新当前条的uid
 				sql = 'update User set uid=?  where id=?';
-				args = [uid, res.insertId];
+				args = [uid, uid];
 				//////////////////////
 				pomelo.app.get('dbclient').query(sql,args,function(err, res) {
 				      	if(err) {

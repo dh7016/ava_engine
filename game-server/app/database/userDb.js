@@ -147,8 +147,8 @@ userDb.registerByDid = function (did, cb) {
 				//进一步更新uid 
 				var uid=res.insertId;
 				//更新当前条的uid
-				sql = 'update User set uid=?  where username=?';
-				args = [uid, username];
+				sql = 'update User set uid=?  where id=?';
+				args = [uid, res.insertId];
 				//////////////////////
 				pomelo.app.get('dbclient').query(sql,args,function(err, res) {
 				      	if(err) {
@@ -211,7 +211,7 @@ userDb.registerByUsername = function (username, password, did, email, cb) {
 		function(res, cb) {
 			if(res) {
 					//说明可以注册did
-					sql = "insert into User ('username', 'password', 'did', email) values (?, ?, ?, ?)";
+					sql = 'insert into User (id, username, password, did, email) values (?, ?, ?, ?)';
 					args = [username, password, did, email];
 					pomelo.app.get('dbclient').query(sql,args,function(err, res) {
   				 		if(err) {
@@ -249,10 +249,10 @@ userDb.registerByUsername = function (username, password, did, email, cb) {
 			else {
 				//添加成功
 				//进一步更新uid 
-				var uid=0+res[0].insertId;
+				var uid=res.insertId;
 				//更新当前条的uid
-				sql = 'update User set uid=?  where username=?';
-				args = [uid, username];
+				sql = 'update User set uid=?  where id=?';
+				args = [uid, res.insertId];
 				//////////////////////
 				pomelo.app.get('dbclient').query(sql,args,function(err, res) {
 				      	if(err) {
@@ -282,7 +282,7 @@ userDb.registerByUsername = function (username, password, did, email, cb) {
      		 return;
    		 }
 
-    	next(null, {code: code});
+    	next({code: code});
     	//code决定注册是否成功
  	 })
 

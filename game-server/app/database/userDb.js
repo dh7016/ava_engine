@@ -87,8 +87,7 @@ userDb.registerByDid = function (did, cb) {
   				args = [did];
 
   				 pomelo.app.get('dbclient').query(sql,args,function(err, res) {
-  				 	console.log(res);
-  				 	console.log(res.length);
+  				 	
 
   				 	if(err !== null) {
   				 		cb(null,false);
@@ -112,6 +111,9 @@ userDb.registerByDid = function (did, cb) {
 					sql = 'insert into User ( uid, did ) values (null, ?)';
 					args = [did];
 					pomelo.app.get('dbclient').query(sql,args,function(err, res) {
+						console.log(res);
+  				 	console.log(res.length);
+
   				 		if(err) {
   				 			cb(null,false);
   				 			code:500;
@@ -122,13 +124,13 @@ userDb.registerByDid = function (did, cb) {
   				 			//说明注册成功
   				 			cb(null,true);
   				 			code=101;//说明单项操作成功
-  				 			console.log("way1");
+  				 			console.log("way2");
   				 		}
   				 		else {
   				 			//说明注册失败
   				 			cb(null,false);
   				 			code=500;
-  				 			console.log("way1");
+  				 			console.log("way3");
   				 		}
   					 })
 

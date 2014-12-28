@@ -134,7 +134,7 @@ userDb.registerByDid = function (did, cb) {
 					code=500;
 					cb(null,false);
 				}
-			}
+			},
 			//3更新uid
 		function(res, cb) {
 			if(!res) {

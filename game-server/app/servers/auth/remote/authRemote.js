@@ -10,10 +10,10 @@ var Remote = function(app) {
 
 
 
-Remote.prototype.registerByDid = function(session, did, cb) {
-	userDb.loginByDid(did,cb);
+Remote.prototype.registerByDid = function( did, cb) {
+	userDb.registerByDid(did,cb);
 };
 
-Remote.prototype.registerByUsername = function(session, username, password, did, email, cb) {
-	userDb.loginByUsername(username, password, did, email, cb);
+Remote.prototype.registerByUsername = function( username, password, did, email, cb) {
+	userDb.registerByUsername(username, password, did, email, cb);
 }

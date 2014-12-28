@@ -145,7 +145,7 @@ userDb.registerByDid = function (did, cb) {
 			else {
 				//添加成功
 				//进一步更新uid 
-				var uid=0+res[0].insertId;
+				var uid=res.insertId;
 				//更新当前条的uid
 				sql = 'update User set uid=?  where username=?';
 				args = [uid, username];

@@ -20,7 +20,7 @@ userDb.loginByUsername = function (username, password, cb) {
 		} 
 		else {
 			
-			if (!res) {
+			if (!res||res.length<=0) {
 
 				//说明根本没有这个用户
 				cb({signal:-1});
@@ -58,7 +58,9 @@ userDb.loginByDid = function (Did, cb) {
 		} 
 		else {
 			//查询正常
-			if (!res[0]) {
+			//返回的数据存在并且内容大于0
+			if (!res||res.length<=0) {
+				//查询失败
 				cb({signal:0});
 				
 			} 
@@ -67,7 +69,7 @@ userDb.loginByDid = function (Did, cb) {
 				console.log(100010);
 				console.log(res);
 				console.log(res.length);
-				cb({signal:1, uid:res[0].id});  
+				cb({signal:1, uid:res[0].uid});  
 			}
 		}
 	});
@@ -85,12 +87,12 @@ userDb.registerByDid = function (did, cb) {
   				args = [did];
 
   				 pomelo.app.get('dbclient').query(sql,args,function(err, res) {
-  				 	if(err) {
+  				 	if(err !== null) {
   				 		cb(null,false);
   				 		return;
   				 	}
-  				 	if(!res[0]) {
-  				 		//说明当前did没有注册
+  				 	if(!res||res.length<=0) {
+  				 		//说明没有这个用户 当前did没有注册
   				 		cb(null,true);
   				 	}
   				 	else {
@@ -107,25 +109,20 @@ userDb.registerByDid = function (did, cb) {
 					sql = 'insert into User ( uid, did ) values (null, ?)';
 					args = [did];
 					pomelo.app.get('dbclient').query(sql,args,function(err, res) {
-						console.log("way");
-						console.log(res.length);
   				 		if(err) {
   				 			cb(null,false);
   				 			code:500;
-  				 			console.log("way1");
   				 			return;
   				 		}
-  				 		if(!!res) {
+  				 		if(!!res&&res.length>0) {
   				 			//说明注册成功
   				 			cb(null,true);
-  				 			code=100;
-  				 			console.log("way2");
+  				 			code=101;//说明单项操作成功
   				 		}
   				 		else {
   				 			//说明注册失败
   				 			cb(null,false);
   				 			code=500;
-  				 			console.log("way3");
   				 		}
   					 })
 
@@ -160,7 +157,7 @@ userDb.registerByDid = function (did, cb) {
 						else
 						{
 							//更新正常
-							if (res[0]) {
+							if (!!res&&res.length>0) {
 							cb(null,true)
 							code=100;
 							} 
@@ -197,7 +194,7 @@ userDb.registerByUsername = function (username, password, did, email, cb) {
   				 		cb(null,false);
   				 		return;
   				 	}
-  				 	if(!res[0]) {
+  				 	if(!res||res.length<=0) {
   				 		//说明当前did没有注册
   				 		cb(null,true);
   				 	}
@@ -220,7 +217,7 @@ userDb.registerByUsername = function (username, password, did, email, cb) {
   				 			code:500;
   				 			return;
   				 		}
-  				 		if(!res[0]) {
+  				 		if(!!res&&res.length>0) {
   				 			//说明注册成功
   				 			cb(null,res);
   				 			code=100;
@@ -249,11 +246,12 @@ userDb.registerByUsername = function (username, password, did, email, cb) {
 			}
 			else {
 				//添加成功
+				//添加成功
 				//进一步更新uid 
 				var uid=res.insertId;
 				//更新当前条的uid
-				sql = 'update User set uid=?  where uid=?';
-				args = [uid, uid];
+				sql = 'insert into PlayerInfo ( uid, gold, diamond ) values (?, ?, ?)';
+				args = [uid, 10000, 10000];
 				//////////////////////
 				pomelo.app.get('dbclient').query(sql,args,function(err, res) {
 				      	if(err) {
@@ -264,7 +262,7 @@ userDb.registerByUsername = function (username, password, did, email, cb) {
 						else
 						{
 							//更新正常
-							if (res[0]) {
+							if (!!res&&res.length>0) {
 							cb(null,true)
 							code=100;
 							} 
@@ -304,7 +302,14 @@ userDb.getPlayerInfoByUid = function (uid, cb)
 			cb(null);
 		} 
 		else {
-			cb(res);
+			if(!!res&&res.length>0) {
+				//返回成功
+				cb(res);
+			}
+			else {	
+				//返回失败
+				cb(null);
+			}
 		}
 	})
 }

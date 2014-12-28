@@ -1,6 +1,8 @@
 module.exports = {
 	OK: 200, 
 	FAIL: 500, 
+	REGISTER_STEP_1_DONE:200
+	REGISTER_STEP_2_DONE:201
 
 	ENTRY: {
 		FA_TOKEN_INVALID: 	1001, 

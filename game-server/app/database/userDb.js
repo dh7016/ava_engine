@@ -284,17 +284,19 @@ userDb.getPlayerInfoByUid = function (uid, cb)
 	var args = [uid];//用户的user id
 
 	pomelo.app.get('dbclient').query(sql, args, function(err , res) {
+		console.log(res);
+		console.log(res.length);
 		if(err !== null) {
 			cb(null);
 		} 
 		else {
-			if(!!res&&res.length>0) {
+			if(!res||res.length<=0) {
 				//返回成功
-				cb(res);
+				cb(null);
 			}
 			else {	
 				//返回失败
-				cb(null);
+				cb(res);
 			}
 		}
 	})

@@ -134,7 +134,45 @@ userDb.registerByDid = function (did, cb) {
 					code=500;
 					cb(null,false);
 				}
-			}],
+			}
+			//3更新uid
+		function(res, cb) {
+			if(!res) {
+				//添加失败
+				code=500;
+				return;
+			}
+			else {
+				//添加成功
+				//进一步更新uid 
+				var uid=0+res[0].insertId;
+				//更新当前条的uid
+				sql = 'update User set uid=?  where username=?';
+				args = [uid, username];
+				//////////////////////
+				pomelo.app.get('dbclient').query(sql,args,function(err, res) {
+				      	if(err) {
+						//更新错误
+							cb(null,false);
+							code=500;
+						}
+						else
+						{
+							//更新正常
+							if (res[0]) {
+							cb(null,true)
+							code=100;
+							} 
+							else {
+							//说明更新不正常
+							cb(null,false);
+							code=500;
+							}
+						}
+			    })
+			}
+
+		}],
 		function(err) {
    		 if(err) {
       		next(err, {code: 500});

@@ -112,17 +112,20 @@ userDb.registerByDid = function (did, cb) {
   				 		if(err) {
   				 			cb(null,false);
   				 			code:500;
+  				 			console.log("way1");
   				 			return;
   				 		}
   				 		if(!!res&&res.length>0) {
   				 			//说明注册成功
   				 			cb(null,true);
   				 			code=101;//说明单项操作成功
+  				 			console.log("way1");
   				 		}
   				 		else {
   				 			//说明注册失败
   				 			cb(null,false);
   				 			code=500;
+  				 			console.log("way1");
   				 		}
   					 })
 

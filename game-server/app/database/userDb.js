@@ -106,7 +106,7 @@ userDb.registerByDid = function (did, cb) {
 			function(res, cb) {
 				if(res) {
 					//说明可以注册did
-					sql = "insert into User ('did') values (?)";
+					sql = 'insert into User ( did ) values (?)';
 					args = [did];
 					pomelo.app.get('dbclient').query(sql,args,function(err, res) {
 						console.log("mode2");

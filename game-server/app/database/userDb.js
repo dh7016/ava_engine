@@ -85,8 +85,6 @@ userDb.registerByDid = function (did, cb) {
   				args = [did];
 
   				 pomelo.app.get('dbclient').query(sql,args,function(err, res) {
-  				 	console.log("mode1");
-  				 	console.log(res);
   				 	if(err) {
   				 		cb(null,false);
   				 		return;
@@ -106,25 +104,26 @@ userDb.registerByDid = function (did, cb) {
 			function(res, cb) {
 				if(res) {
 					//说明可以注册did
-					sql = 'insert into User ( id, did ) values (null, ?)';
+					sql = 'insert into User ( uid, did ) values (null, ?)';
 					args = [did];
 					pomelo.app.get('dbclient').query(sql,args,function(err, res) {
-						console.log("mode2");
-						console.log(res);
   				 		if(err) {
   				 			cb(null,false);
   				 			code:500;
+  				 			console.log("way1");
   				 			return;
   				 		}
   				 		if(!res[0]) {
   				 			//说明注册成功
   				 			cb(null,true);
   				 			code=100;
+  				 			console.log("way2");
   				 		}
   				 		else {
   				 			//说明注册失败
   				 			cb(null,false);
   				 			code=500;
+  				 			console.log("way3");
   				 		}
   					 })
 
@@ -135,7 +134,7 @@ userDb.registerByDid = function (did, cb) {
 					cb(null,false);
 				}
 			},
-			//3更新uid
+			//3更新player info表
 		function(res, cb) {
 			if(!res) {
 				//添加失败
@@ -147,8 +146,8 @@ userDb.registerByDid = function (did, cb) {
 				//进一步更新uid 
 				var uid=res.insertId;
 				//更新当前条的uid
-				sql = 'update User set uid=?  where id=?';
-				args = [uid, uid];
+				sql = 'insert into PlayerInfo ( uid, gold, diamond ) values (?, ?, ?)';
+				args = [uid, 10000, 10000];
 				//////////////////////
 				pomelo.app.get('dbclient').query(sql,args,function(err, res) {
 				      	if(err) {
@@ -211,7 +210,7 @@ userDb.registerByUsername = function (username, password, did, email, cb) {
 		function(res, cb) {
 			if(res) {
 					//说明可以注册did
-					sql = 'insert into User (id, username, password, did, email) values (?, ?, ?, ?)';
+					sql = 'insert into User (uid, username, password, did, email) values (null, ?, ?, ?, ?)';
 					args = [username, password, did, email];
 					pomelo.app.get('dbclient').query(sql,args,function(err, res) {
   				 		if(err) {
@@ -251,7 +250,7 @@ userDb.registerByUsername = function (username, password, did, email, cb) {
 				//进一步更新uid 
 				var uid=res.insertId;
 				//更新当前条的uid
-				sql = 'update User set uid=?  where id=?';
+				sql = 'update User set uid=?  where uid=?';
 				args = [uid, uid];
 				//////////////////////
 				pomelo.app.get('dbclient').query(sql,args,function(err, res) {

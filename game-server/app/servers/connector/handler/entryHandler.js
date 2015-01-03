@@ -205,6 +205,8 @@ Handler.prototype.loadConfig = function (msg, session, next) {
 	//得到配置文件
     var gameConfig="cwnlcijjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj";
     console.log(aa.test1);
+    var cc={test:aa};
+    console.log(cc.test.test1);
     //返回配置文件
     next(null,{code:100,config:gameConfig});
 

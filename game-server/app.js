@@ -21,8 +21,8 @@ app.configure('production|development', 'gate|connector|auth' , function(){
 
       var dbclient = require('./app/database/mySql/mySql').init(app);
       app.set('dbclient', dbclient); 
-
-
+      //设置同步
+      app.use(sync, {sync: {path:__dirname + '/app/database/mapping', dbclient: dbclient}});
 
 });
 

@@ -198,12 +198,13 @@ Handler.prototype.subscribe = function(msg, session, next) {
 };
 
 //////////////////
+aa=require('../../../../config/game_config/ai');
 //读取配置信息 在正式连接前下载游戏的配置信息
 Handler.prototype.loadConfig = function (msg, session, next) {
 
 	//得到配置文件
     var gameConfig="cwnlcijjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj";
-
+    console.log(aa.test1);
     //返回配置文件
     next(null,{code:100,config:gameConfig});
 

@@ -50,6 +50,7 @@ Handler.prototype.AuthByUsername = function(msg,session,next) {
 	}	
 	)*/
 	console.log(12345);
+	next(null,{signal:1});
 }
 
 

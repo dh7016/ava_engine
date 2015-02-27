@@ -15,10 +15,14 @@ userDb.loginByUsername = function (username, password, cb) {
 	pomelo.app.get('dbclient').query(sql, args, function(err , res) {
 		
 		if(err !== null) {
+			console.log(102);
+			console.log(err);
+
 			//当查询出现错误
 			cb({signal:-1});
 		} 
 		else {
+			console.log(101);
 			console.log(res);
 
 			if (!res||res.length<=0) {

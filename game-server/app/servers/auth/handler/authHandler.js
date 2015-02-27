@@ -32,7 +32,7 @@ Handler.prototype.registerByUsername = function(msg,session,next) {
 //验证 用户信息
 Handler.prototype.AuthByUsername = function(msg,session,next) {
 
-	var username=msg.username;
+	/*var username=msg.username;
 	var password=msg.password;
 
 
@@ -48,7 +48,8 @@ Handler.prototype.AuthByUsername = function(msg,session,next) {
 			next(null,{signal:0});
 		}
 	}	
-	)
+	)*/
+	console.log(12345);
 }
 
 

@@ -29,6 +29,29 @@ Handler.prototype.registerByUsername = function(msg,session,next) {
 		}
 	});
 }
+//验证 用户信息
+Handler.prototype.AuthByUsername = function(msg,session,next) {
+
+	var username=msg.username;
+	var password=msg.password;
+
+
+	//验证username 和 password是否合法
+	userDb.loginByUsername(username,password,function(res){
+
+		//1验证成功
+		if(res.signal==1) {
+			next(null,{signal:1,username:username,password:password});
+		}
+		//2验证失败
+		else{
+			next(null,{signal:0});
+		}
+	}	
+	)
+}
+
+
 
 //登陆
 Handler.prototype.loginConnect = function(msg,session,next) {

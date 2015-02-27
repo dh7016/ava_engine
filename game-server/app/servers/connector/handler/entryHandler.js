@@ -198,16 +198,30 @@ Handler.prototype.subscribe = function(msg, session, next) {
 };
 
 //////////////////
-aa=require('../../../../config/game_config/ai');
+ai_config=require('../../../../config/game_config/ai');
+bullet_config=require('../../../../config/game_config/bullet');
+e_creature_config=require('../../../../config/game_config/e_creature');
+f_creature_config=require('../../../../config/game_config/f_creature');
+item_config=require('../../../../config/game_config/item');
+object_config=require('../../../../config/game_config/object');
+scene_config=require('../../../../config/game_config/scene');
+skill_config=require('../../../../config/game_config/skill');
+
+
 //读取配置信息 在正式连接前下载游戏的配置信息
 Handler.prototype.loadConfig = function (msg, session, next) {
 
 	//得到配置文件
     var gameConfig="cwnlcijjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj";
-    console.log(aa.test1);
-    var cc={test:aa};
-    console.log(cc.test.test1);
+    
     //返回配置文件
-    next(null,{code:100,config:gameConfig});
+    next(null,{code:100,config:gameConfig,ai:ai_config,bullet:bullet_config,e_creature:e_creature_config,f_creature:f_creature_config,item:item_config,object:object_config,scene:scene_config,skill:skill_config});
+
+}
+//testloadconfig 测试时用来直接返回 scene config
+Handler.prototype.testloadConfig = function (msg, session, next) {
+
+    //返回配置文件
+    next(null,{code:100,scene:scene_config});
 
 }

@@ -9,21 +9,19 @@ var userDb = module.exports;
 
 //用户名 密码 进行登陆
 userDb.loginByUsername = function (username, password, cb) {
-	var sql = 'select * from	User where name = ?';
+	var sql = 'select * from User where username = ?';
 	var args = [username];//用户的user id
 
 	pomelo.app.get('dbclient').query(sql, args, function(err , res) {
 		
 		if(err !== null) {
-			console.log(102);
-			console.log(err);
+			
 
 			//当查询出现错误
 			cb({signal:-1});
 		} 
 		else {
-			console.log(101);
-			console.log(res);
+			
 
 			if (!res||res.length<=0) {
 

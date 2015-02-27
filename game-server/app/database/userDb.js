@@ -19,7 +19,8 @@ userDb.loginByUsername = function (username, password, cb) {
 			cb({signal:-1});
 		} 
 		else {
-			
+			console.log(res);
+
 			if (!res||res.length<=0) {
 
 				//说明根本没有这个用户

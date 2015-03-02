@@ -204,9 +204,9 @@ userDb.registerByDid = function (_did, cb) {
    		 }
    		console.log(code);
     	//next(null, {code: code});
-    	cb({code:code});
+    	cb(null,{code:code});
     	//根据code来得到是否注册的结果
- 	 })
+ 	 });
 }
 userDb.registerByUsername = function (username, password, did, email, cb) {
 	var sql, args, code, uid;

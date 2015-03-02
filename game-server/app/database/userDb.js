@@ -178,17 +178,18 @@ userDb.registerByDid = function (_did, cb) {
 				args = [uid, 10000, 10000];
 				//////////////////////
 				pomelo.app.get('dbclient').query(sql,args,function(err, res) {
-				      	if(err!=null) {
+				      	if(err!==null) {
 						//更新错误
 							cb(null,false);
 							code=500;
+							console.log("way3");
 						}
 						else
 						{
 							//更新正常
 							cb(null,true)
 							code=100;
-							
+							console.log("way4");
 						}
 			    })
 			}

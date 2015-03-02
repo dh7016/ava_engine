@@ -16,14 +16,12 @@ var Handler = function(app) {
 Handler.prototype.registerByDid = function(msg,session,next) {
 	var did=msg.did;
 
-	console.log(101);
-	console.log(did);
 	this.app.rpc.auth.authRemote.registerByDid(session,did, function(res) {
 		if(!!res) {
-		next(null,res);//res 内包含code
+		   next(null,res);//res 内包含code
 		}
 		else{
-			next(null,{signal:0});
+			next(null,{code:500});
 		}
 	});
 }

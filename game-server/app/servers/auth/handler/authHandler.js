@@ -14,10 +14,16 @@ var Handler = function(app) {
 
 //did注册
 Handler.prototype.registerByDid = function(msg,session,next) {
+	var did=msg.did;
 
-	this.app.rpc.auth.authRemote.registerByDid(msg.did, function(res) {
+	console.log(101);
+	console.log(did);
+	this.app.rpc.auth.authRemote.registerByDid(did, function(res) {
 		if(!!res) {
 		next(null,res);//res 内包含code
+		}
+		else{
+			next(null,{signal:0});
 		}
 	});
 }

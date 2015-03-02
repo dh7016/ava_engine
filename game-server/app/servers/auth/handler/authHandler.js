@@ -18,6 +18,7 @@ Handler.prototype.registerByDid = function(msg,session,next) {
 
 	this.app.rpc.auth.authRemote.registerByDid(session,did, function(res) {
 		if(!!res) {
+			console.log(res);
 		   next(null,res);//res 内包含code
 		}
 		else{

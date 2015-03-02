@@ -11,6 +11,7 @@ var Remote = function(app) {
 
 
 Remote.prototype.registerByDid = function(did, cb) {
+	console.log(100);
 	console.log(did);
 	userDb.registerByDid(did,cb);
 };

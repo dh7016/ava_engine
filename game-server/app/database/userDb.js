@@ -114,7 +114,6 @@ userDb.registerByDid = function (_did, cb) {
 				//是否有重复did
 				sql = 'select * from  User where did = ?';
   				args = [did];
-  				console.log(11111);
   				 pomelo.app.get('dbclient').query(sql,args,function(err, res) {
   				 	console.log(res);
   				 	console.log(res.length);
@@ -141,7 +140,7 @@ userDb.registerByDid = function (_did, cb) {
 					sql = 'insert into User ( uid, did ) values (null, ?)';
 					args = [did];
 					pomelo.app.get('dbclient').query(sql,args,function(err, res) {
-						console.log(res);
+					console.log(res);
   				 	console.log(res.length);
 
   				 		if(err!==null) {
@@ -156,6 +155,7 @@ userDb.registerByDid = function (_did, cb) {
   				 			code=101;//说明单项操作成功
   				 			uid=res.insertId;
   				 			console.log("way2");
+  				 			console.log(code);
   				 		}
   					 })
 				}

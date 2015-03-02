@@ -190,6 +190,8 @@ userDb.registerByDid = function (_did, cb) {
 							cb(null,true)
 							code=100;
 							console.log("way4");
+							console.log(code);
+							
 						}
 			    })
 			}
@@ -200,7 +202,7 @@ userDb.registerByDid = function (_did, cb) {
       		next(err, {code: 500});
      		 return;
    		 }
-
+   		console.log(code);
     	//next(null, {code: code});
     	cb({code:code});
     	//根据code来得到是否注册的结果

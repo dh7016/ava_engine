@@ -7,6 +7,35 @@ var pomelo = require('pomelo');
 var userDb = module.exports;
 
 
+//用户名 did绑定
+userDb.BindUsernameToDid = function (username,password,did,cb) {
+	var sql = 'update User set username=?, password=? where id= ? ';
+	var args = [username,password,did];
+
+	pomelo.app.get('dbclient').query(sql, args, function(err , res) {
+		if(err !== null) {
+			//当查询出现错误
+			cb({signal:-1});
+		} 
+		else {
+			if (!res||res.length<=0) {
+
+				//说明根本没有这个用户
+				cb({signal:-1});
+			} 
+			else {
+				
+				//操作完成 成功
+				cb({signal:1});
+			}
+		}
+	}
+	)
+
+}
+
+
+
 //用户名 密码 进行登陆
 userDb.loginByUsername = function (username, password, cb) {
 	var sql = 'select * from User where username = ?';
@@ -15,14 +44,10 @@ userDb.loginByUsername = function (username, password, cb) {
 	pomelo.app.get('dbclient').query(sql, args, function(err , res) {
 		
 		if(err !== null) {
-			
-
 			//当查询出现错误
 			cb({signal:-1});
 		} 
 		else {
-			
-
 			if (!res||res.length<=0) {
 
 				//说明根本没有这个用户
@@ -79,8 +104,9 @@ userDb.loginByDid = function (Did, cb) {
 };
 
 ////注册////
-userDb.registerByDid = function (did, cb) {
+userDb.registerByDid = function (_did, cb) {
 	console.log("we got here");
+	var did=_did;
 	var sql, args, code, uid;
 	async.waterfall([
 			//1检查did是否合法
@@ -90,8 +116,8 @@ userDb.registerByDid = function (did, cb) {
   				args = [did];
 
   				 pomelo.app.get('dbclient').query(sql,args,function(err, res) {
-  				 		console.log(res);
-  				 	console.log(res.length);
+  				 	//console.log(res);
+  				 	//console.log(res.length);
 
   				 	if(err !== null) {
   				 		cb(null,false);
@@ -132,8 +158,6 @@ userDb.registerByDid = function (did, cb) {
   				 			console.log("way2");
   				 		}
   					 })
-
-
 				}
 				else {
 					code=500;

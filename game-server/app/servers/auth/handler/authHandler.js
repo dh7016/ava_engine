@@ -29,7 +29,7 @@ Handler.prototype.registerByUsername = function(msg,session,next) {
 		}
 	});
 }
-//验证 用户信息
+//验证 用户信息 通过用户名和密码来验证
 Handler.prototype.AuthByUsername = function(msg,session,next) {
 
 	var username=msg.username;
@@ -44,6 +44,28 @@ Handler.prototype.AuthByUsername = function(msg,session,next) {
 			next(null,{signal:1,username:username,password:password});
 		}
 		//2验证失败
+		else{
+			next(null,{signal:0});
+		}
+	}	
+	)
+}
+//绑定 设备号和用户名绑定 把username和did绑定
+Handler.prototype.BindUsernameToDid = function(msg,session,next) {
+
+	var username=msg.username;
+	var password=msg.password;
+	var did=msg.did;
+
+
+	//尝试绑定
+	userDb.BindUsernameToDid(username,password,function(res){
+
+		//1绑定成功 返还成功的username 
+		if(res.signal==1) {
+			next(null,{signal:1,username:username});
+		}
+		//2绑定失败
 		else{
 			next(null,{signal:0});
 		}

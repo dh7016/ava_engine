@@ -225,3 +225,26 @@ Handler.prototype.testloadConfig = function (msg, session, next) {
     next(null,{code:100,scene:scene_config});
 
 }
+
+//区域性的方法
+//////金币 钻石
+//改变gold数值 同时返回现在的gold值
+Handler.prototype.goldValChange(msg,session,next)
+{
+
+
+
+
+}
+////改变diamond数值 同时返回现在的diamond值
+Handler.prototype.diamondValChange(msg,session,next)
+{
+
+
+
+}
+
+
+//////
+
+

@@ -10,7 +10,8 @@ var Remote = function(app) {
 
 
 
-Remote.prototype.registerByDid = function( did, cb) {
+Remote.prototype.registerByDid = function(did, cb) {
+	console.log(did);
 	userDb.registerByDid(did,cb);
 };
 

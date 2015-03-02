@@ -114,10 +114,10 @@ userDb.registerByDid = function (_did, cb) {
 				//是否有重复did
 				sql = 'select * from  User where did = ?';
   				args = [did];
-
+  				console.log(11111);
   				 pomelo.app.get('dbclient').query(sql,args,function(err, res) {
-  				 	//console.log(res);
-  				 	//console.log(res.length);
+  				 	console.log(res);
+  				 	console.log(res.length);
 
   				 	if(err !== null) {
   				 		cb(null,false);

@@ -143,7 +143,6 @@ userDb.registerByDid = function (_did, callback) {
   				 		if(err!==null) {
   				 			cb(null,false);
   				 			code:500;
-  				 			console.log("way1");
   				 			return;
   				 		}
   				 		else {
@@ -151,8 +150,6 @@ userDb.registerByDid = function (_did, callback) {
   				 			cb(null,true);
   				 			code=101;//说明单项操作成功
   				 			uid=res.insertId;
-  				 			console.log("way2");
-  				 			console.log(101);
   				 		}
   					 })
 				}
@@ -179,16 +176,12 @@ userDb.registerByDid = function (_did, callback) {
 						//更新错误
 							cb(null,false);
 							code=500;
-							console.log("way3");
 						}
 						else
 						{
 							//更新正常
 							cb(null,true)
 							code=100;
-							console.log("way4");
-							console.log(100);
-							
 						}
 			    })
 			}
@@ -202,9 +195,8 @@ userDb.registerByDid = function (_did, callback) {
       		next(err, {code: 500});
      		 return;
    		 }
-   		console.log(102);
     	//next(null, {code: code});
-    	callback({code:code});
+    	callback({code:code did:did uid:uid});
     	//根据code来得到是否注册的结果
  	 });
 }

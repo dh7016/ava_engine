@@ -104,8 +104,7 @@ userDb.loginByDid = function (Did, cb) {
 };
 
 ////注册////
-userDb.registerByDid = function (_did, cb) {
-	console.log("we got here");
+userDb.registerByDid = function (_did, callback) {
 	var did=_did;
 	var sql, args, code, uid;
 	async.waterfall([
@@ -115,8 +114,6 @@ userDb.registerByDid = function (_did, cb) {
 				sql = 'select * from  User where did = ?';
   				args = [did];
   				 pomelo.app.get('dbclient').query(sql,args,function(err, res) {
-  				 	console.log(res);
-  				 	console.log(res.length);
 
   				 	if(err !== null) {
   				 		cb(null,false);
@@ -155,7 +152,7 @@ userDb.registerByDid = function (_did, cb) {
   				 			code=101;//说明单项操作成功
   				 			uid=res.insertId;
   				 			console.log("way2");
-  				 			console.log(code);
+  				 			console.log(101);
   				 		}
   					 })
 				}
@@ -190,7 +187,7 @@ userDb.registerByDid = function (_did, cb) {
 							cb(null,true)
 							code=100;
 							console.log("way4");
-							console.log(code);
+							console.log(100);
 							
 						}
 			    })
@@ -202,9 +199,9 @@ userDb.registerByDid = function (_did, cb) {
       		next(err, {code: 500});
      		 return;
    		 }
-   		console.log(code);
+   		console.log(102);
     	//next(null, {code: code});
-    	cb(null,{code:code});
+    	callback({code:code});
     	//根据code来得到是否注册的结果
  	 });
 }

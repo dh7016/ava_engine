@@ -193,7 +193,7 @@ userDb.registerByDid = function (_did, callback) {
 			    })
 			}
 
-		}
+		},
 		function(res, cb) {
 			cb(null,true);
 		}],

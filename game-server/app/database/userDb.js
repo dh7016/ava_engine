@@ -196,7 +196,7 @@ userDb.registerByDid = function (_did, callback) {
      		 return;
    		 }
     	//next(null, {code: code});
-    	callback({code:code did:did uid:uid});
+    	callback({code:code,did:did,uid:uid});
     	//根据code来得到是否注册的结果
  	 });
 }

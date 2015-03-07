@@ -22,7 +22,7 @@ playerPool.prototype.addPlayer = function(player) {
 	//1放入数组
 	this.playerPool[player.uid]=player;
 	//2计数器增加
-	playerTotal++:
+	playerTotal++;
 	//3返回
 	return true;
 }

@@ -198,14 +198,14 @@ Handler.prototype.subscribe = function(msg, session, next) {
 };
 
 //////////////////
-ai_config=require('../../../../config/game_config/ai');
-bullet_config=require('../../../../config/game_config/bullet');
-e_creature_config=require('../../../../config/game_config/e_creature');
-f_creature_config=require('../../../../config/game_config/f_creature');
-item_config=require('../../../../config/game_config/item');
-object_config=require('../../../../config/game_config/object');
-scene_config=require('../../../../config/game_config/scene');
-skill_config=require('../../../../config/game_config/skill');
+ai_config=require('../../../../config/game_config/ai.json');
+bullet_config=require('../../../../config/game_config/bullet.json');
+e_creature_config=require('../../../../config/game_config/e_creature.json');
+f_creature_config=require('../../../../config/game_config/f_creature.json');
+item_config=require('../../../../config/game_config/item.json');
+object_config=require('../../../../config/game_config/object.json');
+scene_config=require('../../../../config/game_config/scene.json');
+skill_config=require('../../../../config/game_config/skill.json');
 
 
 //读取配置信息 在正式连接前下载游戏的配置信息
@@ -220,52 +220,6 @@ Handler.prototype.loadConfig = function (msg, session, next) {
 }
 
 
-//区域性的方法
-//////金币 钻石
-//改变gold数值 同时返回现在的gold值
-Handler.prototype.requestFreshGoldVal= function(msg,session,next){
-
-
-
-}
-////改变diamond数值 同时返回现在的diamond值
-Handler.prototype.requestFreshShardVal=function(msg,session,next){
-
-
-
-}
-
-////////////////player basic info///////////////////////////
-//////请求player的基本信息
-Handler.prototype.requestPlayerBasicInfo=function(msg,session,next){
-
-
-
-}
-//更新玩家的头像
-Handler.prototype.requestChangePlayerIcon=function(msg,session,next){
-
-
-
-}
-//更新玩家的头衔
-Handler.prototype.requestChangePlayerTitle=function(msg,session,next){
-
-
-
-}
-//更新玩家的经验
-Handler.prototype.requestChangePlayerExp=function(msg,session,next){
-
-
-
-}
-//更新玩家的昵称
-Handler.prototype.requestChangePlayerName=function(msg,session,next){
-
-
-
-}
 
 
 

@@ -23,7 +23,10 @@ app.configure('production|development', 'gate|connector|auth' , function(){
       app.set('dbclient', dbclient); 
       //设置同步
       //app.use(sync, {sync: {path:__dirname + '/app/database/mapping', dbclient: dbclient}});
-
+      //创建玩家池
+      var pp =require('./app/uint/playerPool.js');
+      var playerpool=new pp();
+      app.set('playerpool',playerPool);
 });
 
 
@@ -34,6 +37,8 @@ app.configure('production|development', 'gate|connector|auth' , function(){
 
 //connector server
 app.configure('production|development', 'connector', function(){
+
+
   app.set('connectorConfig',
     {
       connector : pomelo.connectors.hybridconnector,

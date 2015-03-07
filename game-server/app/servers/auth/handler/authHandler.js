@@ -67,13 +67,15 @@ Handler.prototype.authByUsername = function(msg,session,next) {
 Handler.prototype.authByDid = function(msg,session,next)
 {
 	var did=msg.did;
+	//的到一个connector服务器的ip 和port
+	var connectors = this.app.getServersByType('connector');
 
 	userDb.loginByDid(did,function(res){
 
 		if(res.signal==1)//验证成功
 		{
-			//的到一个connector服务器的ip 和port
-			var connectors = this.app.getServersByType('connector');
+			
+			
 			if(!connectors || connectors.length === 0) {
 				//说明当前没有正在服务的connector
 				next(null, {signal:-1});

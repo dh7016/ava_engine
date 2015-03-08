@@ -3,6 +3,8 @@ var async = require('async');
 var tokenService = require('../../../services/tokenService');
 var userDb = require('../../../database/userDb');
 //var logger = require('pomelo-logger').getLogger(__filename);
+var pomelo = require('pomelo');
+
 
 module.exports = function(app) {
   return new Handler(app);
@@ -20,6 +22,88 @@ var Handler = function(app) {
  * @param  {Function} next    next step callback
  * @return {Void}
  */
+Handler.prototype.requestEnter = function(msg, session, next) {
+  //当一个玩家链接到connector时的相关处理
+  ////////////////////////////
+  var uid=msg.uid;
+  
+  var playerPool=pomelo.app.get('playerpool');
+  var player=playerPool.getPlayerByUid(uid);
+  //1设置相应的session
+  session.set('uid', uid);
+  session.on('closed', onUserLeave.bind(null, self.app));
+  session.pushAll();
+
+
+
+  //2检查改player的服务器镜像已经存在
+  if(player===undefined) {//说明没有现成镜像
+    //在从数据库得到用户信息后 在playerpool中建立相应的镜像
+    userDb.getPlayerInfoByUid(uid,function(res){
+      
+      if(res!==null)
+      {
+        console.log(res);
+        console.log(res.gold);
+        console.log(res.diamond);
+        //提取信息成功
+        //创建一个新的镜像
+        var pp=require('./app/uint/player.js');
+        var new_player=new p();
+        //开始向镜像中写入玩家信息
+        //gold 
+        new_player.gold=res.gold;
+        //shard
+        new_player.shard=res.shard;
+
+        //....
+        //.....
+        //.....
+        //放入playerpool
+        playerPool.addPlayer(new_player);
+
+
+        next(null,{signal:1});
+      }
+      else {
+        //如果提取个人信息出错
+        next(null,{signal:0});
+      }
+    })
+
+  }
+  else {//有镜像 说明这个玩家之前不长的时间登陆过 断连后返回
+    //延长原有镜像的寿命
+    player.restore();
+    next(null,{signal:1});
+  }
+
+}
+////event///
+var onUserLeave = function (app, session, reason) {
+  ///当这个玩家正在断连
+  if(!session || !session.uid) {
+    return;
+  }
+
+  console.log('user:');
+  console.log(session.uid);
+  console.log('is leaving');
+
+  //操作相应的镜像进入dissconted状态
+  pomelo.app.get('playerpool').getPlayerByUid(session.uid).disconnected();
+};
+
+
+
+
+
+///////////////
+
+
+
+
+
 Handler.prototype.entry = function(msg, session, next) {
   //得到玩家的token
   var token=msg.token, self=this;

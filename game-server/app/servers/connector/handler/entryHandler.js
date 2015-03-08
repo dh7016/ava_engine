@@ -45,17 +45,17 @@ Handler.prototype.requestEnter = function(msg, session, next) {
       if(res!==null)
       {
         console.log(res);
-        console.log(res.gold);
-        console.log(res.diamond);
+        console.log(res[0].gold);
+        console.log(res[0].diamond);
         //提取信息成功
         //创建一个新的镜像
-        var pp=require('./app/uint/player.js');
+        var pp=require('../../../app/uint/player.js');
         var new_player=new p();
         //开始向镜像中写入玩家信息
         //gold 
-        new_player.gold=res.gold;
+        new_player.gold=res[0].gold;
         //shard
-        new_player.shard=res.shard;
+        new_player.shard=res[0].shard;
 
         //....
         //.....

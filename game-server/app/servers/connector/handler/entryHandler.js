@@ -52,10 +52,14 @@ Handler.prototype.requestEnter = function(msg, session, next) {
         var p=require('../../../uint/player.js');
         var new_player=new p();
         //开始向镜像中写入玩家信息
+        //uid
+        new_player.uid=res[0].uid;
+
         //gold 
         new_player.gold=res[0].gold;
         //shard
         new_player.shard=res[0].shard;
+
 
         //....
         //.....

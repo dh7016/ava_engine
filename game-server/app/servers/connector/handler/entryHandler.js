@@ -26,6 +26,7 @@ Handler.prototype.requestEnter = function(msg, session, next) {
   //当一个玩家链接到connector时的相关处理
   ////////////////////////////
   var uid=msg.uid;
+  self = this;
   
   var playerPool=pomelo.app.get('playerpool');
   var player=playerPool.getPlayerByUid(uid);

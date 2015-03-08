@@ -49,7 +49,7 @@ Handler.prototype.requestEnter = function(msg, session, next) {
         console.log(res[0].diamond);
         //提取信息成功
         //创建一个新的镜像
-        var pp=require('../../app/uint/player.js');
+        var pp=require('../../../uint/player.js');
         var new_player=new p();
         //开始向镜像中写入玩家信息
         //gold 

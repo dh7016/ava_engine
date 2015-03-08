@@ -10,13 +10,13 @@ var Player = function() {
 	this.life=16;
 
 	//uid
-  	this.uid=data.uid;
+  	this.uid="";
   	//did
-  	this.did=data.did;
+  	this.did="";
   	//gold
-  	this.gold=data.gold;
+  	this.gold=0;
   	//diamond
-  	this.shard=data.shard;
+  	this.shard=0;
 
   	//..................
 

@@ -37,7 +37,7 @@ Handler.prototype.requestEnter = function(msg, session, next) {
 
 
   //2检查改player的服务器镜像已经存在
-  if(player===undefined) {//说明没有现成镜像
+  if(player===null) {//说明没有现成镜像
     //在从数据库得到用户信息后 在playerpool中建立相应的镜像
     userDb.getPlayerInfoByUid(uid,function(res){
       

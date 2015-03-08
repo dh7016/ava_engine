@@ -2,6 +2,9 @@ var async = require('async');
 var tokenService = require('../../../services/tokenService');
 var userDb = require('../../../database/userDb');
 //var logger = require('pomelo-logger').getLogger(__filename);
+var pomelo = require('pomelo');
+
+
 
 module.exports = function(app) {
   return new Handler(app);
@@ -17,13 +20,25 @@ var Handler = function(app) {
 //////金币 钻石
 //改变gold数值 同时返回现在的gold值
 Handler.prototype.requestFreshGoldVal= function(msg,session,next){
-
-
-
+	//得到镜像
+	var player=pomelo.app.get('playerpool').getPlayerByUid(session.uid);
+	if(player===undefined){//查询错误
+		next(null,{signal:0});
+	}
+	else{//查询正常
+		next(null,{signal:1,gold:player.gold});
+	}
 }
 ////改变diamond数值 同时返回现在的diamond值
 Handler.prototype.requestFreshShardVal=function(msg,session,next){
-
+	//得到镜像
+	var player=pomelo.app.get('playerpool').getPlayerByUid(session.uid);
+	if(player===undefined){//查询错误
+		next(null,{signal:0});
+	}
+	else{//查询正常
+		next(null,{signal:1,shard:player.shard});
+	}
 
 
 }

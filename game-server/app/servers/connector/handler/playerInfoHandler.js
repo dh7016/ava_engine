@@ -22,7 +22,10 @@ var Handler = function(app) {
 Handler.prototype.requestFreshGoldVal= function(msg,session,next){
 	//得到镜像
 	var player=pomelo.app.get('playerpool').getPlayerByUid(session.uid);
-	if(player===undefined){//查询错误
+	console.log(session.uid);
+	console.log(player);
+
+	if(player===null){//查询错误
 		next(null,{signal:0});
 	}
 	else{//查询正常
@@ -33,7 +36,9 @@ Handler.prototype.requestFreshGoldVal= function(msg,session,next){
 Handler.prototype.requestFreshShardVal=function(msg,session,next){
 	//得到镜像
 	var player=pomelo.app.get('playerpool').getPlayerByUid(session.uid);
-	if(player===undefined){//查询错误
+
+
+	if(player===null){//查询错误
 		next(null,{signal:0});
 	}
 	else{//查询正常

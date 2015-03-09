@@ -331,14 +331,14 @@ userDb.savePlayerInfo = function(player,cb)
 {
 	//整理信息
 	//1basicInfo
-	var basicInfoJson={level:player.level,rank:player.rank,exp:player.exp,avatarId:player.avatarId,playerName:player.playerName};
+	var basicInfoJson={level:1player.level,rank:player.rank,exp:player.exp,avatarId:player.avatarId,playerName:player.playerName};
 	var basicInfo=acc.jsonToString(basicInfoJson);
 
 
 
 	//这里我们需要紧急储存这个palyer的信息
 	var sql = 'update PlayerInfo set gold=?, diamond=?,basicInfo=? where uid= ? ';
-	var args = [player.gold,player.diamond,basicInfo];
+	var args = [player.gold,player.diamond,basicInfo,player.uid];
 
 	pomelo.app.get('dbclient').query(sql, args, function(err , res) {
 		if(err !== null) {

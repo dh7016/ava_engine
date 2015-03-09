@@ -274,20 +274,20 @@ Handler.prototype.entry = function(msg, session, next) {
   })
 
 };
-var onUserLeave = function (app, session, reason) {
+/*var onUserLeave = function (app, session, reason) {
   //用于用户退出后处理
   if(!session || !session.uid) {
     return;
   }
 
   console.log('1 ~ OnUserLeave is running ...');
-  /*app.rpc.area.playerRemote.playerLeave(session, {playerId: session.get('playerId'), instanceId: session.get('instanceId')}, function(err){
+  app.rpc.area.playerRemote.playerLeave(session, {playerId: session.get('playerId'), instanceId: session.get('instanceId')}, function(err){
     if(!!err){
       logger.error('user leave error! %j', err);
     }
   });
-  //app.rpc.chat.chatRemote.kick(session, session.uid, null);*/
-};
+  //app.rpc.chat.chatRemote.kick(session, session.uid, null);
+};*/
 
 
 

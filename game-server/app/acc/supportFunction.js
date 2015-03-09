@@ -5,7 +5,7 @@ var supportFunction = module.exports;
 //string转化为json
 supportFunction.stringToJson = function(_str) {
 	if(_str!=="") {
-		return eval(_str);
+		return eval("(" + _str + ")");
 	}
 	else {
 		return "";

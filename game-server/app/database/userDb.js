@@ -1,6 +1,7 @@
 //得到底层
 var async = require('async');
 var pomelo = require('pomelo');
+var acc = require('../acc/supportFunction');
 
 
 
@@ -168,8 +169,9 @@ userDb.registerByDid = function (_did, callback) {
 			else {
 				//添加成功
 				//更新当前条的uid
-				sql = 'insert into PlayerInfo ( uid, gold, diamond ) values (?, ?, ?)';
-				args = [uid, 10000, 10000];
+				basic_info="{'level':1,'rank':1,'exp':10,'avatarId':1,'playerName':'shihaoxuan'}";
+				sql = 'insert into PlayerInfo ( uid, gold, diamond,basicInfo ) values (?, ?, ?,?)';
+				args = [uid, 10000, 10000,basic_info];
 				//////////////////////
 				pomelo.app.get('dbclient').query(sql,args,function(err, res) {
 				      	if(err!==null) {
@@ -264,8 +266,10 @@ userDb.registerByUsername = function (username, password, did, email, cb) {
 				//添加成功
 				
 				//更新当前条的uid
-				sql = 'insert into PlayerInfo ( uid, gold, diamond ) values (?, ?, ?)';
-				args = [uid, 10000, 10000];
+				basic_info="{'level':1,'rank':1,'exp':10,'avatarId':1,'playerName':'shihaoxuan'}";
+
+				sql = 'insert into PlayerInfo ( uid, gold, diamond,basicInfo) values (?, ?, ?,?)';
+				args = [uid, 10000, 10000,basic_info];
 				//////////////////////
 				pomelo.app.get('dbclient').query(sql,args,function(err, res) {
 				      	if(err!==null) {
@@ -298,7 +302,7 @@ userDb.registerByUsername = function (username, password, did, email, cb) {
 
 
 
-//尝试得到player info
+///////////个人信息获取///////
 userDb.getPlayerInfoByUid = function (uid, cb)
 {
 	var sql = 'select * from  PlayerInfo where uid = ?';
@@ -312,15 +316,50 @@ userDb.getPlayerInfoByUid = function (uid, cb)
 		} 
 		else {
 			if(!res||res.length<=0) {
-				//返回成功
+				//返回失败
 				cb(null);
 			}
 			else {	
-				//返回失败
+				//返回成功
 				cb(res);
 			}
 		}
 	})
+}
+///////////个人信息储存////////
+userDb.savePlayerInfo = function(player,cb)
+{
+	//整理信息
+	//1basicInfo
+	var basicInfoJson={level:player.level,rank:player.rank,exp:player.exp,avatarId:player.avatarId,playerName:player.playerName};
+	var basicInfo=acc.jsonToString(basicInfoJson);
+
+
+
+	//这里我们需要紧急储存这个palyer的信息
+	var sql = 'update PlayerInfo set gold=?, diamond=?,basicInfo=? where uid= ? ';
+	var args = [player.gold,player.diamond,basicInfo];
+
+	pomelo.app.get('dbclient').query(sql, args, function(err , res) {
+		if(err !== null) {
+			//当查询出现错误
+			cb({signal:-1});
+		} 
+		else {
+			if (!res||res.length<=0) {
+
+				//说明根本没有这个用户
+				cb({signal:-1});
+			} 
+			else {
+				
+				//操作完成 成功
+				cb({signal:1});
+			}
+		}
+	}
+	)
+
 }
 
 

@@ -16,8 +16,17 @@ var Player = function() {
   	//gold
   	this.gold=0;
   	//diamond
-  	this.shard=0;
-
+  	this.diamond=0;
+  	//等级
+  	this.level=0
+  	//爵位
+  	this.rank=0;
+  	//经验
+  	this.exp=0;
+  	//头像index
+  	this.avatarId=0;
+  	//名字
+  	this.playerName="";
   	//..................
 
 };

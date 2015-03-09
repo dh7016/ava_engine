@@ -2,6 +2,8 @@
 var async = require('async');
 var tokenService = require('../../../services/tokenService');
 var userDb = require('../../../database/userDb');
+var acc = require('../../../acc/supportFunction');
+
 //var logger = require('pomelo-logger').getLogger(__filename);
 var pomelo = require('pomelo');
 
@@ -65,9 +67,21 @@ Handler.prototype.requestEnter = function(msg, session, next) {
 
         //gold 
         new_player.gold=res[0].gold;
-        //shard
-        new_player.shard=res[0].shard;
-
+        //diamond
+        new_player.diamond=res[0].diamond;
+        //basicInfo
+        var basicInfoJson=acc.stringToJson(res[0].basicInfo);
+        //相应属性写入镜像
+        //等级
+         new_player.level=acc.level;
+        //爵位
+         new_player.rank=acc.rank;
+        //经验
+        new_player.exp=acc.rank;
+        //头像index
+        new_player.avatarId=acc.avatarId;
+         //名字
+        new_player.playerName=acc.playerName;
 
         //....
         //.....
@@ -102,6 +116,25 @@ var onUserLeave = function (app, session, reason) {
   console.log('user:');
   console.log(session.uid);
   console.log('is leaving');
+
+  //紧急储存这个玩家的信息到服务器 防止丢失
+  var player=pomelo.app.get('playerpool').getPlayerByUid(session.uid);
+  userDb.savePlayerInfo(player,function(res){
+    if(res.signal===1){
+      //存储信息成功
+
+    }
+    else{
+     //存储信息失败
+      console.log('Attention: player info save failed!!!!!!');
+
+    }
+
+
+
+
+  });
+
 
   //操作相应的镜像进入dissconted状态
   pomelo.app.get('playerpool').getPlayerByUid(session.uid).disconnected();

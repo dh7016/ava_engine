@@ -33,7 +33,7 @@ Handler.prototype.requestFreshGoldVal= function(msg,session,next){
 	}
 }
 ////改变diamond数值 同时返回现在的diamond值
-Handler.prototype.requestFreshShardVal=function(msg,session,next){
+Handler.prototype.requestFreshDiamondVal=function(msg,session,next){
 	//得到镜像
 	var player=pomelo.app.get('playerpool').getPlayerByUid(session.uid);
 
@@ -42,10 +42,8 @@ Handler.prototype.requestFreshShardVal=function(msg,session,next){
 		next(null,{signal:0});
 	}
 	else{//查询正常
-		next(null,{signal:1,shard:player.shard});
+		next(null,{signal:1,shard:player.diamond});
 	}
-
-
 }
 
 ////////////////player basic info///////////////////////////
@@ -57,7 +55,7 @@ Handler.prototype.requestPlayerBasicInfo=function(msg,session,next){
 }
 //更新玩家的头像
 Handler.prototype.requestChangePlayerIcon=function(msg,session,next){
-
+//基础信息包括玩家的等级 当前经验值 头像的index  名字
 
 
 }

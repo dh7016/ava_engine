@@ -58,8 +58,10 @@ playerPool.prototype.stopPool = function()
 ///////////////////
 ///添加player
 playerPool.prototype.addPlayer = function(player) {
+
+	var name="ID"+player.uid;
 	//1放入数组
-	this.playerPool[player.uid]=player;
+	this.playerArr[name]=player;
 	//2计数器增加
 	this.playerTotal++;
 	//3返回
@@ -68,9 +70,9 @@ playerPool.prototype.addPlayer = function(player) {
 //删除player
 //根据uid删除
 playerPool.prototype.removePlayerByUid = function(uid){
-
+	var name="ID"+uid;
 	//删除
-	var signal = delete this.playerPool[uid];
+	var signal = delete this.playerArr[name];
 	//计数器减小
 	if(signal)playerTotal--;
 
@@ -79,7 +81,9 @@ playerPool.prototype.removePlayerByUid = function(uid){
 //得到相应player
 //根据uid
 playerPool.prototype.getPlayerByUid = function(uid){
-	var player = this.playerArr[uid];
+	var name="ID"+uid;
+
+	var player = this.playerArr[name];
   	if (!player) {
     return null;
   	}

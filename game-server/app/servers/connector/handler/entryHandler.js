@@ -30,7 +30,15 @@ Handler.prototype.requestEnter = function(msg, session, next) {
   
   var playerPool=pomelo.app.get('playerpool');
   var player=playerPool.getPlayerByUid(uid);
+
+
+
   //1设置相应的session
+   //剔除之前的session
+  self.app.get('sessionService').kick(uid);
+
+  session.bind(uid);
+
   session.set('uid', uid);
   session.on('closed', onUserLeave.bind(null, self.app));
   session.pushAll();

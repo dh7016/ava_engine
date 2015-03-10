@@ -332,7 +332,11 @@ userDb.savePlayerInfo = function(player,cb)
 	//整理信息
 	//1basicInfo
 	var basicInfoJson={level:1,rank:player.rank,exp:player.exp,avatarId:player.avatarId,playerName:player.playerName};
+	console.log(basicInfoJson);
+
 	var basicInfo=acc.jsonToString(basicInfoJson);
+	console.log(basicinfo is..);
+	console.log(basicInfo);
 
 
 

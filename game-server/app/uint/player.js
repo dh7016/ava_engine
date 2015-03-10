@@ -28,6 +28,19 @@ var Player = function() {
   	//名字
   	this.playerName="";
   	//..................
+    ///背包信息
+    //背包容量
+    this.inventoryMax=10;
+    //背包内物品
+    this.itemOwned=[];
+    //佣兵
+    //佣兵数量
+    this.mercenaryMax=3;
+    //拥有佣兵具体信息
+    this.mercenaryHired=[];
+    //英雄
+    
+
 
 };
 

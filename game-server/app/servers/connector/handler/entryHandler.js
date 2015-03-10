@@ -119,6 +119,11 @@ var onUserLeave = function (app, session, reason) {
 
   //紧急储存这个玩家的信息到服务器 防止丢失
   var player=pomelo.app.get('playerpool').getPlayerByUid(session.uid);
+  console.log('check');
+  console.log(player.uid);
+  console.log(player.avatarId);
+
+
   userDb.savePlayerInfo(player,function(res){
     if(res.signal===1){
       //存储信息成功

@@ -335,7 +335,7 @@ userDb.savePlayerInfo = function(player,cb)
 	console.log(basicInfoJson);
 
 	var basicInfo=acc.jsonToString(basicInfoJson);
-	console.log(basicinfo is..);
+	console.log('basicinfo is..');
 	console.log(basicInfo);
 
 

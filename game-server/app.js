@@ -24,7 +24,7 @@ app.configure('production|development', 'gate|connector|auth' , function(){
       //设置同步
       //app.use(sync, {sync: {path:__dirname + '/app/database/mapping', dbclient: dbclient}});
       //创建玩家池
-      var pp =require('./app/uint/playerPool.js');
+      var pp =require('./app/unit/playerPool.js');
       var playerpool=new pp();
       app.set('playerpool',playerpool);
 });

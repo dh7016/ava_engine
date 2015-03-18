@@ -14,7 +14,11 @@ app.configure('production|development', function(){
       //config 
       app.loadConfig('mysql', app.getBase() + '/config/mysql.json');  
       //base config
-      app.loadConfig('bulletBase',app.getBase() + '/config/gameConfig/bullet.json')
+      app.loadConfig('bBase',app.getBase() + '/config/servers.json');
+
+
+      //base config
+      app.loadConfig('bulletBase',app.getBase() + '/config/gameConfig/bullet.json');
 });
 
 //mysql连接点

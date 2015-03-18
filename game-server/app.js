@@ -16,7 +16,7 @@ app.configure('production|development', function(){
       //base config
       app.loadConfig('bBase',app.getBase() + '/config/servers.json');
       //base config
-      app.loadConfig('ase',app.getBase() + '/config/baseConfig/bullet.json');
+      app.loadConfig('ase',app.getBase() + '/config/test/test.json');
 
      
 });

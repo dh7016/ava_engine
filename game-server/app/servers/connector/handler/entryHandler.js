@@ -141,7 +141,7 @@ Handler.prototype.requestEnter = function(msg, session, next) {
            //物品格内放置物品在背包中的id
           new_mercenary.itemPlaced=mercenaryData.itemPlaced;
          //佣兵的属性 包括ap hp..............
-          new_mercenary.attribute=mercenaryData.attribute；
+          new_mercenary.attribute=mercenaryData.attribute;
           //放入数组
           new_player.heroOwned.push(new_mercenary)
         }

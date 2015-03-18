@@ -2,7 +2,7 @@ var async = require('async');
 var tokenService = require('../../../services/tokenService');
 var userDb = require('../../../database/userDb');
 var pomelo = require('pomelo');
-var itemInfo=require('../../../../config/gameConfig/item.json');
+var itemInfo=require('../../../../config/base/itemBase.json');
 var randomSys = require('../../../randomSys/randomSys');
 
 

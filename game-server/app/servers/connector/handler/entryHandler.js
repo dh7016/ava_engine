@@ -396,13 +396,13 @@ Handler.prototype.subscribe = function(msg, session, next) {
 
 //////////////////
 //ai_config=require('../../../../config/game_config/ai.json');
-bullet_config=require('../../../../config/gameConfig/bullet.json');
-e_creature_config=require('../../../../config/gameConfig/e_creature.json');
-f_creature_config=require('../../../../config/gameConfig/f_creature.json');
-item_config=require('../../../../config/gameConfig/item.json');
-object_config=require('../../../../config/gameConfig/object.json');
-scene_config=require('../../../../config/gameConfig/scene.json');
-skill_config=require('../../../../config/gameConfig/skill.json');
+var bullet_config=require('../../../../config/gameConfig/bullet.json');
+var e_creature_config=require('../../../../config/gameConfig/e_creature.json');
+var f_creature_config=require('../../../../config/gameConfig/f_creature.json');
+var item_config=require('../../../../config/gameConfig/item.json');
+var object_config=require('../../../../config/gameConfig/object.json');
+var scene_config=require('../../../../config/gameConfig/scene.json');
+var skill_config=require('../../../../config/gameConfig/skill.json');
 
 
 //读取配置信息 在正式连接前下载游戏的配置信息

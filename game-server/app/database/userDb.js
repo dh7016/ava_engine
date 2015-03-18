@@ -170,7 +170,7 @@ userDb.registerByDid = function (_did, callback) {
 				//添加成功
 				//更新当前条的uid
 				basic_info="{'level':1,'rank':1,'exp':10,'avatarId':1,'playerName':'shihaoxuan'}";
-				sql = 'insert into PlayerInfo ( uid, gold, diamond,basicInfo,inventoryItems,heroOwned,mercenaryOwned ) values (?, ?, ?,?)';
+				sql = 'insert into PlayerInfo ( uid, gold, diamond,basicInfo,inventoryItems,heroOwned,mercenaryOwned ) values (?, ?, ?,?,?,?,?)';
 				args = [uid, 10000, 10000,basic_info,"","",""];
 				//////////////////////
 				pomelo.app.get('dbclient').query(sql,args,function(err, res) {

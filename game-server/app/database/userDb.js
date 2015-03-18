@@ -171,7 +171,7 @@ userDb.registerByDid = function (_did, callback) {
 				//更新当前条的uid
 				basic_info="{'level':1,'rank':1,'exp':10,'avatarId':1,'playerName':'shihaoxuan'}";
 				sql = 'insert into PlayerInfo ( uid, gold, diamond,basicInfo,inventoryItems,heroOwned,mercenaryOwned ) values (?, ?, ?,?,?,?,?)';
-				args = [uid, 10000, 10000,basic_info,"","",""];
+				args = [uid, 10000, 10000,basic_info,"[]","[]","[]"];
 				//////////////////////
 				pomelo.app.get('dbclient').query(sql,args,function(err, res) {
 				      	if(err!==null) {
@@ -344,14 +344,7 @@ userDb.savePlayerInfo = function(player,cb)
 		inventoryItemsJson.push({itemId:item.itemId,quantity:item.quantity,level:item.level});
 	}
 	//填充完毕 转化为String
-	var inventoryItems;
-	if(length===0){
-		//说明没有任何物品
-		inventoryItems="";
-	}
-	else{
-		inventoryItems=acc.jsonToString(inventoryItemsJson);
-	}
+	var inventoryItems=acc.jsonToString(inventoryItemsJson);
 
 	
 
@@ -365,14 +358,8 @@ userDb.savePlayerInfo = function(player,cb)
 		heroOwnedJson.push({heroId:hero.heroId,level:hero.level,itemPlaced:hero.itemPlaced});
 	}
 	//填充完毕 转化为String
-	var heroOwned;
-	if(length===0){
-		//说明没有任何物品
-		heroOwned="";
-	}
-	else{
-		heroOwned=acc.jsonToString(heroOwnedJson);
-	}
+	var heroOwned=acc.jsonToString(heroOwnedJson);
+	
 
 	//4mercenaryowned
 	var mercenaryOwnedJson=[];
@@ -384,14 +371,8 @@ userDb.savePlayerInfo = function(player,cb)
 		mercenaryOwnedJson.push({rank:mercenary.rank,profession:mercenary.profession,level:mercenary.level,itemPlaced:mercenary.itemPlaced,attribute:mercenary.attribute});
 	}
 	//填充完毕 转化为String
-	var mercenaryOwned;
-	if(length===0){
-		//说明没有任何物品
-		mercenaryOwned="";
-	}
-	else{
-		mercenaryOwned=acc.jsonToString(mercenaryOwnedJson);
-	}
+	var mercenaryOwned=acc.jsonToString(mercenaryOwnedJson);
+
 
 	//这里我们需要紧急储存这个palyer的信息
 	var sql = 'update PlayerInfo set gold=?, diamond=?,basicInfo=?,inventoryItems=?,heroOwned=?,mercenaryOwned=? where uid= ? ';

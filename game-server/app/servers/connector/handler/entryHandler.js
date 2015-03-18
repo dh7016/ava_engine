@@ -87,7 +87,7 @@ Handler.prototype.requestEnter = function(msg, session, next) {
         new_player.playerName=basicInfoJson.playerName;
         //背包物品
         //解析背包数据
-        if(res[0].ineventoryItems!=="") {
+
 
         var ineventoryItems=acc.stringToJson(res[0].ineventoryItems);
         var tra,length=ineventoryItems.length;
@@ -101,10 +101,8 @@ Handler.prototype.requestEnter = function(msg, session, next) {
           //填入物品数组
           new_player.ineventoryItems.push(new_item);
          }
-       }
+       
         //解析英雄数据
-        if(res[0].heroOwned!==""){
-
         var heroOwned=acc.stringToJson(res[0].heroOwned);
         length=heroOwned.length;
         for(tra=0;tra<length;tra++) {
@@ -121,10 +119,9 @@ Handler.prototype.requestEnter = function(msg, session, next) {
           //填入英雄数组
           new_player.heroOwned.push(new_hero)
         }
-        }
+        
 
         //解析佣兵数据
-        if(res[0].mercenaryOwned!==""){
         var mercenaryOwned=acc.stringToJson(res[0].mercenaryOwned);
         length=mercenaryOwned.length;
         for(tra=0;tra<length;tra++) {
@@ -152,7 +149,7 @@ Handler.prototype.requestEnter = function(msg, session, next) {
           //放入数组
           new_player.heroOwned.push(new_mercenary)
         }
-        }
+        
         //....
         //.....
         //.....

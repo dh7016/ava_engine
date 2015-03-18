@@ -1,7 +1,7 @@
 var async = require('async');
 var tokenService = require('../../../services/tokenService');
 var userDb = require('../../../database/userDb');
-var stageInfo=require('../../config/gameConfig/stage.json');
+var stageInfo=require('../../../../config/base/stageBase.json');
 
 
 //var logger = require('pomelo-logger').getLogger(__filename);

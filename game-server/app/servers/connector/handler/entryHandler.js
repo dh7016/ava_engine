@@ -89,17 +89,17 @@ Handler.prototype.requestEnter = function(msg, session, next) {
         //解析背包数据
 
 
-        var ineventoryItems=acc.stringToJson(res[0].ineventoryItems);
-        var tra,length=ineventoryItems.length;
+        var inventoryItems=acc.stringToJson(res[0].inventoryItems);
+        var tra,length=inventoryItems.length;
           for(tra=0;tra<length;tra++){
-          var itemData=ineventoryItems[tra];
+          var itemData=inventoryItems[tra];
           var new_item=new item();
           //填入数据
           new_item.itemId=itemData.itemId;
           new_item.quantity=itemData.quantity;
           new_item.level=itemData.level;
           //填入物品数组
-          new_player.ineventoryItems.push(new_item);
+          new_player.inventoryItems.push(new_item);
          }
        
         //解析英雄数据

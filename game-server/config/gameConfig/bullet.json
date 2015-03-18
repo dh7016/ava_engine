@@ -1,6 +1,6 @@
 [
 	//bullet1
-	{"bulletId":0,"AnimationId":0,"name":"bullet1","info":[
+	{bulletId:0,AnimationId:0,name:"bullet1",info:[
 	{"level":1,"damage":10,"subEffect":[]},
 	{"level":2,"damage":20,"subEffect":[]}
 	]

@@ -1,0 +1,17 @@
+[
+	//item1
+	{"itemId":0,"detail":[
+	{ "name":"name0","iconId":0,"effectId":0,"level":1,"decription":"this is #0 item"},
+	{ "name":"name0","iconId":0,"effectId":1,"level":2,"decription":"this is #0 item"},
+	{ "name":"name0","iconId":0,"effectId":2,"level":3,"decription":"this is #0 item"}
+	]
+	}
+	//item2
+	{"itemId":1,"detail":[
+	{ "name":"name1","iconId":1,"effectId":3,"level":1,"decription":"this is #1 item"},
+	{ "name":"name1","iconId":1,"effectId":4,"level":2,"decription":"this is #1 item"},
+	{ "name":"name1","iconId":1,"effectId":5,"level":3,"decription":"this is #1 item"}
+	]
+	}
+
+]

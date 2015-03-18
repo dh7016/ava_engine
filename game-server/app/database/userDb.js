@@ -365,7 +365,7 @@ userDb.savePlayerInfo = function(player,cb)
 		heroOwnedJson.push({heroId:hero.heroId,level:hero.level,itemPlaced:hero.itemPlaced});
 	}
 	//填充完毕 转化为String
-	var heroOwned；
+	var heroOwned;
 	if(length===0){
 		//说明没有任何物品
 		heroOwned="";
@@ -384,7 +384,7 @@ userDb.savePlayerInfo = function(player,cb)
 		mercenaryOwnedJson.push({rank:mercenary.rank,profession:mercenary.profession,level:mercenary.level,itemPlaced:mercenary.itemPlaced,attribute:mercenary.attribute});
 	}
 	//填充完毕 转化为String
-	var mercenaryOwned；
+	var mercenaryOwned;
 	if(length===0){
 		//说明没有任何物品
 		mercenaryOwned="";

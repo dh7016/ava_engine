@@ -182,7 +182,6 @@ Player.prototype.removeTeamMemberByIndex=function(teamIndex,memberIndex) {
 
 
 // 地图相应
-ActivateStage
 Player.prototype.activateStageByIndex=function(stageIndex) {
 
 

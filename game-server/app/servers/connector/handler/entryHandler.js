@@ -412,7 +412,7 @@ Handler.prototype.loadConfig = function (msg, session, next) {
     var gameConfig="cwnlcijjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj";
     
     //返回配置文件
-    next(null,{code:100,config:gameConfig,bullet:bullet_config,e_creature:e_creature_config,f_creature:f_creature_config,item:item_config,object:object_config,scene:scene_config,skill:skill_config});
+    next(null,{code:100,config:gameConfig,bullet:bullet_config.contents,e_creature:e_creature_config,f_creature:f_creature_config,item:item_config,object:object_config,scene:scene_config,skill:skill_config});
 
 }
 

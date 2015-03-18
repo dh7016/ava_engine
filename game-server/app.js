@@ -13,12 +13,7 @@ app.configure('production|development', function(){
       //mysql 数据库
       //config 
       app.loadConfig('mysql', app.getBase() + '/config/mysql.json');  
-      //base config
-      app.loadConfig('bBase',app.getBase() + '/config/servers.json');
-      //base config
-      app.loadConfig('ase',app.getBase() + '/config/base/bulletBase.json');
 
-     
 });
 
 //mysql连接点

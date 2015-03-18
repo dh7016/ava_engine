@@ -62,7 +62,7 @@ Handler.prototype.requestEnter = function(msg, session, next) {
         //提取信息成功
         //创建一个新的镜像
         ////开始关联该镜像的数据信息
-        var p=require('../../../uint/player.js');
+        var p=require('../../../unit/player.js');
         var new_player=new p();
         //开始向镜像中写入玩家信息
         //uid

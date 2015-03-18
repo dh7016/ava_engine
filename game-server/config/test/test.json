@@ -1,28 +1,6 @@
-{
-  "development":{
-    "auth": [
-    {"id": "login-server-1", "host": "120.132.65.184", "port": 3522, "clientPort": 3552, "frontend": true}
-    ],
-
-    "gate": [
-    {"id": "gate-server-1", "host": "120.132.65.184", "port": 3521, "clientPort": 3551, "frontend": true}
-    ],
-
-    "connector": [
-    {"id": "connector-server-1", "host": "120.132.65.184", "port": 3520, "clientPort": 3550, "frontend": true}
-    ]
-  },
-  "production":{
-     "auth": [
-    {"id": "login-server-1", "host": "120.132.65.184", "port": 3522, "clientPort": 3552, "frontend": true}
-    ],
-    
-    "gate": [
-    {"id": "gate-server-1", "host": "120.132.65.184", "port": 3521, "clientPort": 3551, "frontend": true}
-    ],
-
-    "connector": [
-    {"id": "connector-server-1", "host": "120.132.65.184", "port": 3520, "clientPort": 3550, "frontend": true}
-    ]
-  }
-}
+[
+  {"bulletId":0,"AnimationId":0,"name":"bullet1","info":[
+  {"level":1,"damage":10,"subEffect":[{}]},
+  {"level":2,"damage":20,"subEffect":[{}]}
+  ]}
+]

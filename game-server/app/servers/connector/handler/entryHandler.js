@@ -396,9 +396,9 @@ Handler.prototype.subscribe = function(msg, session, next) {
 
 //////////////////
 //ai_config=require('../../../../config/game_config/ai.json');
-bullet_config=require('../../../../config/game_config/bullet.json');
+bullet_config=require('../../../../config/gameConfig/bullet.json');
 e_creature_config=require('../../../../config/gameConfig/e_creature.json');
-f_creature_config=require('../../../../config/gameXonfig/f_creature.json');
+f_creature_config=require('../../../../config/gameConfig/f_creature.json');
 item_config=require('../../../../config/gameConfig/item.json');
 object_config=require('../../../../config/gameConfig/object.json');
 scene_config=require('../../../../config/gameConfig/scene.json');

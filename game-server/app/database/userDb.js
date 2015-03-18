@@ -332,17 +332,49 @@ userDb.savePlayerInfo = function(player,cb)
 	//整理信息
 	//1basicInfo
 	var basicInfoJson={level:1,rank:player.rank,exp:player.exp,avatarId:player.avatarId,playerName:player.playerName};
-	console.log(basicInfoJson);
+	
 
 	var basicInfo=acc.jsonToString(basicInfoJson);
-	console.log('basicinfo is..');
-	console.log(basicInfo);
+	//2inventoryitems 
+	var inventoryItemsJson=[];
+	var tra,length=player.inventoryItems.length;
+	for(tra=0;tra<length;tra++) {
+		//开始填充背包物体数据
+		var item=player.inventoryItems[tra];
+		inventoryItemsJson.push({itemId:item.itemId,quantity:item.quantity,level:item.level});
+	}
+	//填充完毕 转化为String
+	var inventoryItems=acc.jsonToString(inventoryItemsJson);
 
+
+	//3heroOwned
+	var heroOwnedJson;
+	length=player.heroOwned.length;
+	for(tra=0;tra<length;tra++) {
+		//开始填充英雄物体数据
+		var hero=player.heroOwned[tra];
+		heroOwnedJson.push({heroId:hero.heroId,level:hero.level,itemPlaced:hero.itemPlaced});
+	}
+	//填充完毕 转化为String
+	var heroOwned=acc.jsonToString(heroOwnedJson);
+
+
+	//4mercenaryowned
+	var mercenaryOwnedJson;
+
+	length=player.mercenaryOwned.length;
+	for(tra=0;tra<length;tra++) {
+		//开始填充佣兵物体数据
+		var mercenary=player.mercenaryOwned[tra];
+		mercenaryOwnedJson.push({rank:mercenary.rank,profession:mercenary.profession,level:mercenary.level,itemPlaced:mercenary.itemPlaced,attribute:mercenary.attribute});
+	}
+	//填充完毕 转化为String
+	var mercenaryOwned=acc.jsonToString(mercenaryOwnedJson);
 
 
 	//这里我们需要紧急储存这个palyer的信息
-	var sql = 'update PlayerInfo set gold=?, diamond=?,basicInfo=? where uid= ? ';
-	var args = [player.gold,player.diamond,basicInfo,player.uid];
+	var sql = 'update PlayerInfo set gold=?, diamond=?,basicInfo=?,inventoryItems=?,heroOwned=?,mercenaryOwned=? where uid= ? ';
+	var args = [player.gold,player.diamond,basicInfo,inventoryItems,heroOwned,mercenaryOwned,player.uid];
 
 	pomelo.app.get('dbclient').query(sql, args, function(err , res) {
 		if(err !== null) {

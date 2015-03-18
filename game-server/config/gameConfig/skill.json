@@ -1,0 +1,10 @@
+[
+	//skill1
+	{skillId:0,name:"name0",iconId:0,effectId:0,info:[
+	{level:1,decription:"this is #0 skill"},
+	{level:2,decription:"this is #0 skill"},
+	{level:3,decription:"this is #0 skill"}
+	]
+	}
+
+]

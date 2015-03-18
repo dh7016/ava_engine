@@ -1,0 +1,27 @@
+[
+	//effect1
+	{effectId:0,type:0,effectIcon:0,AnimationId:0, info:[
+	{level:1, val:0,subEffects:[],decription:"this is #0 item"},
+	{level:2, val:0,subEffects:[],decription:"this is #0 item"}
+	]
+	},
+	//effect2
+	{effectId:0,type:0,effectIcon:0,AnimationId:0, info:[
+	{level:1, val:0,subEffects:[],decription:"this is #0 item"},
+	{level:2, val:0,subEffects:[],decription:"this is #0 item"}
+	]
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+]

@@ -2,9 +2,11 @@
 //构造函数
 var Item = function() {
     //item id
-	 this.itemId=0;
-   //数量
-   this.quantity=1;
+	this.itemId=0;
+    //数量
+   	this.quantity=1;
+   	//等级
+   	this.level=1;
 
 };
 

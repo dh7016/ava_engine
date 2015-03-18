@@ -3,6 +3,8 @@ var async = require('async');
 var tokenService = require('../../../services/tokenService');
 var userDb = require('../../../database/userDb');
 var acc = require('../../../acc/supportFunction');
+var item = require('../../../unit/item.js');
+var hero = require('../../../unit/hero.js');
 
 //var logger = require('pomelo-logger').getLogger(__filename);
 var pomelo = require('pomelo');
@@ -59,6 +61,7 @@ Handler.prototype.requestEnter = function(msg, session, next) {
         console.log(res[0].diamond);
         //提取信息成功
         //创建一个新的镜像
+        ////开始关联该镜像的数据信息
         var p=require('../../../uint/player.js');
         var new_player=new p();
         //开始向镜像中写入玩家信息
@@ -73,16 +76,75 @@ Handler.prototype.requestEnter = function(msg, session, next) {
         var basicInfoJson=acc.stringToJson(res[0].basicInfo);
         //相应属性写入镜像
         //等级
-         new_player.level=acc.level;
+         new_player.level=basicInfoJson.level;
         //爵位
-         new_player.rank=acc.rank;
+         new_player.rank=basicInfoJson.rank;
         //经验
-        new_player.exp=acc.rank;
+        new_player.exp=basicInfoJson.rank;
         //头像index
-        new_player.avatarId=acc.avatarId;
+        new_player.avatarId=basicInfoJson.avatarId;
          //名字
-        new_player.playerName=acc.playerName;
+        new_player.playerName=basicInfoJson.playerName;
+        //背包物品
+        //解析背包数据
+        var ineventoryItems=acc.stringToJson(res[0].ineventoryItems);
+        var tra,length=ineventoryItems.length;
+        for(tra=0;tra<length;tra++){
+          var itemData=ineventoryItems[tra];
+          var new_item=new item();
+          //填入数据
+          new_item.itemId=itemData.itemId;
+          new_item.quantity=itemData.quantity;
+          new_item.level=itemData.level;
+          //填入物品数组
+          new_player.ineventoryItems.push(new_item);
+        }
+        //解析英雄数据
+        var heroOwned=acc.stringToJson(res[0].heroOwned);
+        length=heroOwned.length;
+        for(tra=0;tra<length;tra++) {
+          //生成heroOwned数据
+          var heroData=heroOwned[tra];
+          var new_hero=new hero();
+          //填入数据
+          //id
+          new_hero.heroId=heroData.heroId;
+          //level
+          new_hero.level=heroData.level;
+          //itemplaced
+          new_hero.itemplaced=heroData.itemplaced;
+          //填入英雄数组
+          new_player.heroOwned.push(new_hero)
+        }
 
+        //解析佣兵数据
+        var mercenaryOwned=acc.stringToJson(res[0].mercenaryOwned);
+        length=mercenaryOwned.length;
+        for(tra=0;tra<length;tra++) {
+          //生成heroOwned数据
+          var mercenaryData=mercenaryOwned[tra];
+          var new_mercenary=new mercenary();
+          //填入数据
+          //rank
+          new_mercenar.rank=mercenaryData.rank;
+          //level
+          new_mercenary.level=mercenaryData.level;
+          ////looking id样貌
+          new_mercenary.lookingId=mercenaryData.lookingId;
+          //职业
+          new_mercenary.profession=mercenaryData.profession;
+          //每等级的成长值 hp attack
+          new_mercenary.hpGPL=10;
+          new_mercenary.apGPL=10;
+          //物品格数量
+          new_mercenary.ItemGrid=3;
+           //物品格内放置物品在背包中的id
+          new_mercenary.itemPlaced=mercenaryData.itemPlaced;
+         //佣兵的属性 包括ap hp..............
+          new_mercenary.attribute=mercenaryData.attribute；
+          //放入数组
+          new_player.heroOwned.push(new_mercenary)
+        }
         //....
         //.....
         //.....

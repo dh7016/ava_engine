@@ -1,0 +1,24 @@
+[
+   //creature1
+   {creatureId:0,iconId:0,animationId:0,rangeType:0,info:[
+	{ name:"name0",level:1,attribute:{ap:100,hp:100,range:100/*....*/},decription:"this is #0 creaure"},
+	{ name:"name0",level:1,attribute:{ap:100,hp:100,range:100/*....*/},decription:"this is #0 creature"},
+	{ name:"name0",level:1,attribute:{ap:100,hp:100,range:100/*....*/},decription:"this is #0 creature"},
+	]
+   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+]

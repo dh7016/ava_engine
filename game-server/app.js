@@ -15,7 +15,8 @@ app.configure('production|development', function(){
       app.loadConfig('mysql', app.getBase() + '/config/mysql.json');  
       //base config
       app.loadConfig('bBase',app.getBase() + '/config/servers.json');
-
+      //base config
+      app.loadConfig('ase',app.getBase() + '/config/test/test.json');
 
       //base config
       app.loadConfig('bulletBase',app.getBase() + '/config/gameConfig/bullet.json');

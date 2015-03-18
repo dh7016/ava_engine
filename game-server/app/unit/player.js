@@ -1,8 +1,8 @@
 
 
 
-var hero = require('hero.js');
-var item = require('item.js');
+var hero = require('../unit/hero.js');
+var item = require('../unit/item.js');
 
 //这是一个玩家在服务器端的镜像
 //构造函数

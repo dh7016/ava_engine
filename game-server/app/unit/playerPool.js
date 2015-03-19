@@ -84,7 +84,7 @@ playerPool.prototype.getPlayerByUid = function(uid){
 	var name="ID"+uid;
 
 	var player = this.playerArr[name];
-  	if (!player) {
+  	if (player===undefined) {
     return null;
   	}
   	return player;

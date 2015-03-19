@@ -20,12 +20,29 @@ var Handler = function(app) {
 
 //请求商店信息//////////////////////////////////////////////////////
 ////////////////////背包区域///////////////////
+//请求扩充背包容量
+Handler.prototype.requestIncreaseInventoryCapacity=function(msg,session,next){
+	//1调取相应player
+	var player=pomelo.app.get('playerpool').getPlayerByUid(session.uid);
+	//2的到用户传入的数据
+	var capacityIncreased=msg.capacityIncreased;
+	player.inventoryCapacity+=capacityIncreased;
+
+	//2得到inventoryItems的信息 并且返回给客户端
+	next(null,{inventoryCapacity:player.inventoryCapacity});
+}
+
+
+
+
 //请求刷新背包
 Handler.prototype.requestFreshInventory=function(msg,session,next){
 	//1调取相应player
 	var player=pomelo.app.get('playerpool').getPlayerByUid(session.uid);
+
+
 	//2得到inventoryItems的信息 并且返回给客户端
-	next(null,player.inventoryItems);
+	next(null,{inventoryCapacity:player.inventoryCapacity,inventoryItems:player.inventoryItems});
 }
 //请求出售物品
 Handler.prototype.requestSellItem=function(msg,session,next){

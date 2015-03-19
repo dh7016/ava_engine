@@ -46,6 +46,8 @@ var Player = function() {
     this.mercenaryOwned=[];
     //英雄
     this.heroOwned=[];//这里存放着英雄的基本信息 以herojs为单位
+    //背包容量
+    this.inventoryCapacity=0;//背包的容量
     //背包物品
     this.inventoryItems=[];//这里储存了背包内的物品 以itemjs为单位
     //商店内物品 

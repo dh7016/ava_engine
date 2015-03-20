@@ -336,44 +336,21 @@ userDb.savePlayerInfo = function(player,cb)
 
 	var basicInfo=acc.jsonToString(basicInfoJson);
 	//2inventoryitems 
-	var inventoryItemsJson=[];
-	var tra,length=player.inventoryItems.length;
-	for(tra=0;tra<length;tra++) {
-		//开始填充背包物体数据
-		var item=player.inventoryItems[tra];
-		inventoryItemsJson.push({itemId:item.itemId,quantity:item.quantity,level:item.level});
-	}
-	//填充完毕 转化为String
+	//转化为String
 	var inventoryItems=acc.jsonToString(player.inventoryItems);
-	console.log('inventoryItems is');
-	console.log(inventoryItems);
+	
 
 	
 
 
 	//3heroOwned
-	var heroOwnedJson=[];
-	length=player.heroOwned.length;
-	for(tra=0;tra<length;tra++) {
-		//开始填充英雄物体数据
-		var hero=player.heroOwned[tra];
-		heroOwnedJson.push({heroId:hero.heroId,level:hero.level,itemPlaced:hero.itemPlaced});
-	}
-	//填充完毕 转化为String
-	var heroOwned=acc.jsonToString(heroOwnedJson);
+	// 转化为String
+	var heroOwned=acc.jsonToString(player.heroOwned);
 	
 
 	//4mercenaryowned
-	var mercenaryOwnedJson=[];
-
-	length=player.mercenaryOwned.length;
-	for(tra=0;tra<length;tra++) {
-		//开始填充佣兵物体数据
-		var mercenary=player.mercenaryOwned[tra];
-		mercenaryOwnedJson.push({rank:mercenary.rank,profession:mercenary.profession,level:mercenary.level,itemPlaced:mercenary.itemPlaced,attribute:mercenary.attribute});
-	}
-	//填充完毕 转化为String
-	var mercenaryOwned=acc.jsonToString(mercenaryOwnedJson);
+	// 转化为String
+	var mercenaryOwned=acc.jsonToString(player.mercenaryOwned);
 
 
 	//这里我们需要紧急储存这个palyer的信息

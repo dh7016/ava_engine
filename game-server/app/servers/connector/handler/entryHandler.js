@@ -90,7 +90,8 @@ Handler.prototype.requestEnter = function(msg, session, next) {
 
 
         var inventoryItems=acc.stringToJson(res[0].inventoryItems);
-        var tra,length=inventoryItems.length;
+        player.inventoryItems=inventoryItems;
+        /*var tra,length=inventoryItems.length;
           for(tra=0;tra<length;tra++){
           var itemData=inventoryItems[tra];
           var new_item=new item();
@@ -100,7 +101,7 @@ Handler.prototype.requestEnter = function(msg, session, next) {
           new_item.level=itemData.level;
           //填入物品数组
           new_player.inventoryItems.push(new_item);
-         }
+         }*/
        
         //解析英雄数据
         var heroOwned=acc.stringToJson(res[0].heroOwned);

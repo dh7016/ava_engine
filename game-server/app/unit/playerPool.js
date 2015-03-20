@@ -74,8 +74,9 @@ playerPool.prototype.removePlayerByUid = function(uid){
 	//删除
 	var signal = delete this.playerArr[name];
 	//计数器减小
-	if(signal)playerTotal--;
-
+	if(signal){
+		this.playerTotal--;
+	}
 	return signal;
 }
 //得到相应player

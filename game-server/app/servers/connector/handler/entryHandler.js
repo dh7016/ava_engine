@@ -90,7 +90,7 @@ Handler.prototype.requestEnter = function(msg, session, next) {
 
 
         var inventoryItems=acc.stringToJson(res[0].inventoryItems);
-        player.inventoryItems=inventoryItems;
+        new_player.inventoryItems=inventoryItems;
         /*var tra,length=inventoryItems.length;
           for(tra=0;tra<length;tra++){
           var itemData=inventoryItems[tra];

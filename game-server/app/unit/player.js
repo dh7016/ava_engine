@@ -49,7 +49,7 @@ var Player = function() {
     //背包容量
     this.inventoryCapacity=0;//背包的容量
     //背包物品
-    this.inventoryItems;//这里储存了背包内的物品 以itemjs为单位
+    this.inventoryItems=[];//这里储存了背包内的物品 以itemjs为单位
     //商店内物品 
     this.shopItems=[];//这个类似inventoryitems
     //玩家的组队

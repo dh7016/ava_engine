@@ -345,6 +345,8 @@ userDb.savePlayerInfo = function(player,cb)
 	}
 	//填充完毕 转化为String
 	var inventoryItems=acc.jsonToString(inventoryItemsJson);
+	console.log('inventoryItems is');
+	console.log(inventoryItems);
 
 	
 

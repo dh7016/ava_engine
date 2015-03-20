@@ -13,5 +13,5 @@ supportFunction.stringToJson = function(_str) {
 }
  //json转化为string
  supportFunction.jsonToString = function(_json) {
- 	JSON.stringify(_json); 
+ 	return JSON.stringify(_json); 
  }

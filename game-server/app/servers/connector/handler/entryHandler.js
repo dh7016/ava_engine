@@ -201,6 +201,8 @@ var onUserLeave = function (app, session, reason) {
       console.log('Attention: player info save failed!!!!!!');
 
     }
+    //剔除这个player
+    pomelo.app.get('playerpool').removePlayerByUid(session.uid);
 
 
 
@@ -209,7 +211,8 @@ var onUserLeave = function (app, session, reason) {
 
 
   //操作相应的镜像进入dissconted状态
-  pomelo.app.get('playerpool').getPlayerByUid(session.uid).disconnected();
+  //暂时取消
+  //pomelo.app.get('playerpool').getPlayerByUid(session.uid).disconnected();
 };
 
 

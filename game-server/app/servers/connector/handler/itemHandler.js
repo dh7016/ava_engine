@@ -49,16 +49,14 @@ Handler.prototype.requestSellItem=function(msg,session,next){
 	//1调取相应player
 	var player=pomelo.app.get('playerpool').getPlayerByUid(session.uid);
 	//2根据msg的内容变卖相应的物品
-	//目标物品的索引位置
-	var itemIndex=msg.itemIndex;
-	//变卖的数量
-	var quantity=msg.quantity;
+	//目标物品的索引集合
+	var itemIndexArr=msg.item_index_arr;
 	//变卖目标物品 并且修改金钱 同时返还出来
 
 
-	var gold_now=player.sellItemByIndex(itemIndex,quantity);
+	var gold_now=player.sellItemByIndex(itemIndexArr);
 	//向客户端发送数据
-	next(bull,{inventoryItems:player.inventoryItems,gold_now:gold_now});
+	next(bull,{inventoryItems:player.inventoryItems,gold:gold_now});
 }
 //请求物品详细信息
 Handler.prototype.requestItemInfo=function(msg,session,next){

@@ -113,9 +113,22 @@ Player.prototype.addItem=function(itemId,level,quantity)
 }
 /////对物品的操作
 ////贩卖相应index位置的物品
-Player.prototype.sellItemByIndex=function(index,quantity) {
+Player.prototype.sellItemByIndex=function(itemIndexArr) {
+  //1删除相应索引的物品
+  var tra,length=itemIndexArr.length,price_sold;
+  var itemBase=itemInfo=require('../../config/gameConfig/item.json')
+  for(tra=0;tra<length;tra++){
+    var item=this.inventoryItems[itemIndexArr[tra]];
 
+    //1找到相应物品的出售价钱
+    price_sold+=itemBase[item.itemid].detail[item.level-1].price;
 
+    //2删除相应的物品
+    delete this.inventoryItems[itemIndexArr[tra]];
+  }
+
+  //返还玩家出售后的金币总量
+  return this.gold+price_sold;
 }
 ////贩卖相应id位置的物品
 Player.prototype.sellItemByItemId=function(itemId,quantity) {

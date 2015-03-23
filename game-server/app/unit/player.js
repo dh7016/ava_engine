@@ -132,7 +132,8 @@ Player.prototype.sellItemByIndex=function(itemIndexArr) {
     price_sold+=itemBase[item.itemId].detail[item.level-1].price;
 
     //2删除相应的物品
-    delete this.inventoryItems[itemIndexArr[tra]];
+    this.inventoryItems.splice(itemIndexArr[tra],1);
+
   }
 
   //返还玩家出售后的金币总量

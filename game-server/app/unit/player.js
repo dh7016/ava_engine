@@ -119,7 +119,8 @@ Player.prototype.sellItemByIndex=function(itemIndexArr) {
   var itemBase=itemInfo=require('../../config/gameConfig/item.json')
   for(tra=0;tra<length;tra++){
     var item=this.inventoryItems[itemIndexArr[tra]];
-
+    console.log('-------------------------');
+    console.log(this.inventoryItems);
     console.log('big test here');
     console.log('item.itemid is');
     console.log(item.itemid);

@@ -56,7 +56,7 @@ Handler.prototype.requestSellItem=function(msg,session,next){
 
 	var gold_now=player.sellItemByIndex(itemIndexArr);
 	//向客户端发送数据
-	next(bull,{inventoryItems:player.inventoryItems,gold:gold_now});
+	next(null,{inventoryItems:player.inventoryItems,gold:gold_now});
 }
 //请求物品详细信息
 Handler.prototype.requestItemInfo=function(msg,session,next){

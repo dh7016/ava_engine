@@ -115,10 +115,17 @@ Player.prototype.addItem=function(itemId,level,quantity)
 ////贩卖相应index位置的物品
 Player.prototype.sellItemByIndex=function(itemIndexArr) {
   //1删除相应索引的物品
-  var tra,length=itemIndexArr.length,price_sold;
+  var tra,length=itemIndexArr.length,price_sold=0;
   var itemBase=itemInfo=require('../../config/gameConfig/item.json')
   for(tra=0;tra<length;tra++){
     var item=this.inventoryItems[itemIndexArr[tra]];
+
+    console.log('big test here');
+    console.log('item.itemid is');
+    console.log(item.itemid);
+    console.log(itemIndexArr[tra])
+    console.log('----------------');
+
 
     //1找到相应物品的出售价钱
     price_sold+=itemBase[item.itemid].detail[item.level-1].price;

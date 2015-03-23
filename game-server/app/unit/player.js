@@ -129,7 +129,7 @@ Player.prototype.sellItemByIndex=function(itemIndexArr) {
 
 
     //1找到相应物品的出售价钱
-    price_sold+=itemBase[item.itemid].detail[item.level-1].price;
+    price_sold+=itemBase[item.itemId].detail[item.level-1].price;
 
     //2删除相应的物品
     delete this.inventoryItems[itemIndexArr[tra]];

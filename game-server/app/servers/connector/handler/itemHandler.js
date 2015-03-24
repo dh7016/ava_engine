@@ -119,7 +119,7 @@ Handler.prototype.requestBuyShopItem=function(msg,session,next){
 	var itemIndex=msg.itemIndex;
 	var page=msg.page;
 	//3尝试购买
-	player.buyShopItemByIndex(itemIndex,page);	
+	var signal=player.buyShopItemByIndex(itemIndex,page);	
 	//4返回结果
-	next(null,{shopItems:player.shopItems,gold:player.gold,diamond:player.diamond});
+	next(null,{signal:signal,shopItems:player.shopItems,gold:player.gold,diamond:player.diamond});
 }

@@ -154,6 +154,7 @@ Player.prototype.updateItemByIndex=function(index,levelUpdated) {
 //购买商店物品
 Player.prototype.buyShopItemByIndex=function(itemIndex,page) {
   //1得到item
+  var signal=0;
   var item;
 
   if(page===1){
@@ -165,25 +166,37 @@ Player.prototype.buyShopItemByIndex=function(itemIndex,page) {
       var shopItemsR=require('../../config/gameConfig/shopItemsR.json');
       item=shopItemsR[itemIndex];
   }
-
-  //2添加进inventoryItem
-  this.inventoryItems.push(item);
   //3扣除购买所需要的费用
   var itemBase= pomelo.app.get('itemBase');
   var price=itemBase[item.itemId].detail[item.level-1].priceFS;
   //判断是金币 还是钻石
   if(price>=0){
     //金币
-    this.gold-=price;
+    if(this.gold>=price) {
+      //说明玩家金币足够
+       this.gold-=price;
+       signal=1；
+    }
   }
   else {
     //钻石
-    this.diamond-=-price;
+    if(this.diamond>=-price) {
+      //说明玩家钻石足够
+      this.diamond-=-price;
+      signal=1;
+    }
   }
-  //4删除shopItems中的item
+  if(signal===1) {
+  //说明购买成功
+  //添加进inventoryItem
+  this.inventoryItems.push(item);
+  //删除shopItems中的item
   if(page===1){
   this.shopItems.splice(itemIndex,1);
   }
+  }
+
+  return signal;
 
 }
 //英雄升级

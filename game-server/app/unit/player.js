@@ -175,7 +175,7 @@ Player.prototype.buyShopItemByIndex=function(itemIndex,page) {
     if(this.gold>=price) {
       //说明玩家金币足够
        this.gold-=price;
-       signal=1；
+       signal=1;
     }
   }
   else {

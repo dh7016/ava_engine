@@ -414,6 +414,7 @@ Handler.prototype.subscribe = function(msg, session, next) {
 //ai_config=require('../../../../config/game_config/ai.json');
 var bulletBase=require('../../../../config/gameConfig/bullet.json');
 var itemBase=require('../../../../config/gameConfig/item.json');
+var gameConfig=require('../../../../config/gameConfig/base.json');
 
 /*var e_creature_config=require('../../../../config/gameConfig/e_creature.json');
 var f_creature_config=require('../../../../config/gameConfig/f_creature.json');
@@ -427,7 +428,7 @@ var skill_config=require('../../../../config/gameConfig/skill.json');*/
 Handler.prototype.loadConfig = function (msg, session, next) {
 
 	//得到配置文件
-    var gameConfig="cwnlcijjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj";
+    //var gameConfig="cwnlcijjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj";
     //返回配置文件
     next(null,{code:100,config:gameConfig,bulletBase:bulletBase,itemBase:itemBase});
 

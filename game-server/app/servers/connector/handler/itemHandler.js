@@ -86,9 +86,18 @@ Handler.prototype.requestItemUpgrade=function(msg,session,next){
 Handler.prototype.requestFreshShopInfo=function(msg,session,next){
 	//1调取相应player
 	var player=pomelo.app.get('playerpool').getPlayerByUid(session.uid);
-
-	//2返回目标信息
-	next(null,player.shopItems);
+	//2得到用户的参数
+	var page=msg.page;
+	//3返回目标信息
+	if(page===1){
+		//请求随机物品页面
+		next(null,player.shopItems);
+	}
+	else if(page===2){
+		//请求固定物品页面
+		var shopItemsR=require('../../../../config/gameConfig/shopItemsR.json');
+		next(null,shopItemsR);
+	}
 }
 //请求重刷商店物品
 Handler.prototype.requestFreshShopItem=function(msg,session,next){
@@ -108,8 +117,9 @@ Handler.prototype.requestBuyShopItem=function(msg,session,next){
 	var player=pomelo.app.get('playerpool').getPlayerByUid(session.uid);
 	//2得到用户传入信息
 	var itemIndex=msg.itemIndex;
+	var page=msg.page;
 	//3尝试购买
-	var currency_owned=player.buyShopItemByIndex(itemIndex);	
+	player.buyShopItemByIndex(itemIndex);	
 	//4返回结果
 	next(null,{shopItems:player.shopItems,gold:player.gold,diamond:player.diamond});
 }

@@ -152,9 +152,20 @@ Player.prototype.updateItemByIndex=function(index,levelUpdated) {
 
 }
 //购买商店物品
-Player.prototype.buyShopItemByIndex=function(itemIndex) {
+Player.prototype.buyShopItemByIndex=function(itemIndex,page) {
   //1得到item
-  var item=this.shopItems[itemIndex];
+  var item;
+
+  if(page===1){
+      //说明是可刷新的页面
+      item=this.shopItems[itemIndex];
+  }
+  else {
+      //说明是固定页面
+      var shopItemsR=require('../../config/gameConfig/shopItemsR.json');
+      item=shopItemsR[itemIndex];
+  }
+
   //2添加进inventoryItem
   this.inventoryItems.push(item);
   //3扣除购买所需要的费用
@@ -170,7 +181,9 @@ Player.prototype.buyShopItemByIndex=function(itemIndex) {
     this.diamond-=-price;
   }
   //4删除shopItems中的item
+  if(page===1){
   this.shopItems.splice(itemIndex,1);
+  }
 
 }
 //英雄升级

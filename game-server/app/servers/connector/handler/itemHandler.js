@@ -54,9 +54,9 @@ Handler.prototype.requestSellItem=function(msg,session,next){
 	//变卖目标物品 并且修改金钱 同时返还出来
 
 
-	var gold_now=player.sellItemByIndex(itemIndexArr);
+	var currency_owned=player.sellItemByIndex(itemIndexArr);
 	//向客户端发送数据
-	next(null,{inventoryItems:player.inventoryItems,gold:gold_now});
+	next(null,{inventoryItems:player.inventoryItems,gold:currency_owned.gold,diamond:currency_owned.diamond});
 }
 //请求物品详细信息
 Handler.prototype.requestItemInfo=function(msg,session,next){
@@ -109,5 +109,7 @@ Handler.prototype.requestBuyShopItem=function(msg,session,next){
 	//2得到用户传入信息
 	var itemIndex=msg.itemIndex;
 	//3尝试购买
-	player.buyShopItemByIndex(itemIndex);	
+	var currency_owned=player.buyShopItemByIndex(itemIndex);	
+	//4返回结果
+	next(null,{shopItems:player.shopItems,gold:player.gold,diamond:player.diamond});
 }

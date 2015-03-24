@@ -91,6 +91,11 @@ Handler.prototype.requestEnter = function(msg, session, next) {
 
         var inventoryItems=acc.stringToJson(res[0].inventoryItems);
         new_player.inventoryItems=inventoryItems;
+        //商店当前物品的数据
+        var shopItems=acc.stringToJson(res[0].shopItems);
+        new_player.shopItems=shopItems;
+
+
         /*var tra,length=inventoryItems.length;
           for(tra=0;tra<length;tra++){
           var itemData=inventoryItems[tra];
@@ -150,6 +155,9 @@ Handler.prototype.requestEnter = function(msg, session, next) {
           //放入数组
           new_player.heroOwned.push(new_mercenary)
         }
+
+
+
         
         //....
         //.....

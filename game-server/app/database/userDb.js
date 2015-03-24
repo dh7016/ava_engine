@@ -338,24 +338,25 @@ userDb.savePlayerInfo = function(player,cb)
 	//2inventoryitems 
 	//转化为String
 	var inventoryItems=acc.jsonToString(player.inventoryItems);
-	
+	//3shopitems数据
+	var shopItems=acc.jsonToString(player.shopItems);
 
 	
 
 
-	//3heroOwned
+	//4heroOwned
 	// 转化为String
 	var heroOwned=acc.jsonToString(player.heroOwned);
 	
 
-	//4mercenaryowned
+	//5mercenaryowned
 	// 转化为String
 	var mercenaryOwned=acc.jsonToString(player.mercenaryOwned);
 
 
 	//这里我们需要紧急储存这个palyer的信息
-	var sql = 'update PlayerInfo set gold=?, diamond=?,basicInfo=?,inventoryItems=?,heroOwned=?,mercenaryOwned=? where uid= ? ';
-	var args = [player.gold,player.diamond,basicInfo,inventoryItems,heroOwned,mercenaryOwned,player.uid];
+	var sql = 'update PlayerInfo set gold=?, diamond=?,basicInfo=?,inventoryItems=?,shopItems=?,heroOwned=?,mercenaryOwned=? where uid= ? ';
+	var args = [player.gold,player.diamond,basicInfo,inventoryItems,shopItems,heroOwned,mercenaryOwned,player.uid];
 
 	pomelo.app.get('dbclient').query(sql, args, function(err , res) {
 		if(err !== null) {

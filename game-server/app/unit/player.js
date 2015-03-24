@@ -3,6 +3,7 @@
 
 var hero = require('../unit/hero.js');
 var item = require('../unit/item.js');
+var pomelo = require('pomelo');
 
 //这是一个玩家在服务器端的镜像
 //构造函数
@@ -115,29 +116,30 @@ Player.prototype.addItem=function(itemId,level,quantity)
 ////贩卖相应index位置的物品
 Player.prototype.sellItemByIndex=function(itemIndexArr) {
   //1删除相应索引的物品
-  var tra,length=itemIndexArr.length,price_sold=0;
-  var itemBase=itemInfo=require('../../config/gameConfig/item.json')
+  var tra,length=itemIndexArr.length,gold_got=0,diamond_got=0;
+  var itemBase= pomelo.app.get('itemBase');
   for(tra=0;tra<length;tra++){
     var item=this.inventoryItems[itemIndexArr[tra]];
-    console.log('-------------------------');
-    console.log(this.inventoryItems);
-    console.log('big test here');
-    console.log('item.itemid is');
-    console.log(item.itemid);
-    console.log(itemIndexArr[tra])
-    console.log('----------------');
-
-
-    //1找到相应物品的出售价钱
-    price_sold+=itemBase[item.itemId].detail[item.level-1].price;
-
+    var price_sold=itemBase[item.itemId].detail[item.level-1].priceFS;
+    //判断是金币还是钻石
+    if(price_sold>=0) {
+      //金币
+      gold_got+=price_sold;
+    }
+    else {
+      //钻石
+      diamond_got+=-price_sold;
+    }
     //2删除相应的物品
     this.inventoryItems.splice(itemIndexArr[tra],1);
 
   }
 
+  this.gold+=gold_got;
+  this.diamond+=diamond_got;
+
   //返还玩家出售后的金币总量
-  return this.gold+price_sold;
+  return {gold:this.gold,diamond:this.diamond};
 }
 ////贩卖相应id位置的物品
 Player.prototype.sellItemByItemId=function(itemId,quantity) {
@@ -151,7 +153,24 @@ Player.prototype.updateItemByIndex=function(index,levelUpdated) {
 }
 //购买商店物品
 Player.prototype.buyShopItemByIndex=function(itemIndex) {
-
+  //1得到item
+  var item=this.shopItems[itemIndex];
+  //2添加进inventoryItem
+  this.inventoryItems.push(item);
+  //3扣除购买所需要的费用
+  var itemBase= pomelo.app.get('itemBase');
+  var price=itemBase[item.itemId].detail[item.level-1].priceFS;
+  //判断是金币 还是钻石
+  if(price>=0){
+    //金币
+    this.gold-=price;
+  }
+  else {
+    //钻石
+    this.diamond-=-price;
+  }
+  //4删除shopItems中的item
+  this.shopItems.splice(itemIndex,1);
 
 }
 //英雄升级

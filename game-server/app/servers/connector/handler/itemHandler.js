@@ -104,12 +104,41 @@ Handler.prototype.requestFreshShopItem=function(msg,session,next){
 	//1调取相应player
 	var player=pomelo.app.get('playerpool').getPlayerByUid(session.uid);
 
+	//2检验是否有钱购买
+	int fresh_cost=parseInt(pomelo.app.get('baseConfig').priceForFreshShop);
+	var signal=0;
+	if(fresh_cost>=0){
+		//花费的是金币
+		if(player.gold>=fresh_cost) {
+			//说明金币数够
+			player.gold-=fresh_cost;
+			signal=1;
+		}
 
-	//2尝试使用randomSys刷新player内的ShopItems
-	player.shopItems.splice(0,player.shopItems.length);
-	player.shopItems=randomSys.freshShopItem;
+	}
+	else {
+		//花费的是钻石
+		if(player.diamond>=-fresh_cost){
+			//说明钻石足够
+			player.diamond-=-fresh_cost;
+			signal=1;
+		}
+
+	}
+
+	var result;
+	if(signal===1){
+		//2尝试使用randomSys刷新player内的ShopItems
+		player.shopItems.splice(0,player.shopItems.length);
+		player.shopItems=randomSys.freshShopItem;
+		result={signal:signal,shopItems:player.shopItems};
+	}
+	else
+	{
+		result={signal:0};
+	}
 	//3返回新的结果
-	next(null,player.shopItems);
+	next(null,result);
 }
 //请求购买商店物品
 Handler.prototype.requestBuyShopItem=function(msg,session,next){
@@ -119,7 +148,7 @@ Handler.prototype.requestBuyShopItem=function(msg,session,next){
 	var itemIndex=msg.itemIndex;
 	var page=msg.page;
 	//3尝试购买
-	var signal=player.buyShopItemByIndex(itemIndex,page);	
+	var result=player.buyShopItemByIndex(itemIndex,page);	
 	//4返回结果
-	next(null,{signal:signal,shopItems:player.shopItems,gold:player.gold,diamond:player.diamond});
+	next(null,result);
 }

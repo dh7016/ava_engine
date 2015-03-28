@@ -10,7 +10,7 @@ var Hero = function() {
     //物品格数量
     this.ItemGrid=3;
     //物品格内放置物品在背包中的id 背包内物品的id
-    this.itemPlaced=[];
+    this.itemEquiped=[];
 }
 
 module.exports = Hero;

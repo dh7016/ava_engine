@@ -156,6 +156,7 @@ Player.prototype.buyShopItemByIndex=function(itemIndex,page) {
   //1得到item
   var signal=0;
   var item;
+   var shopItemsR;
 
   if(page===1){
       //说明是可刷新的页面
@@ -163,7 +164,7 @@ Player.prototype.buyShopItemByIndex=function(itemIndex,page) {
   }
   else {
       //说明是固定页面
-      var shopItemsR=require('../../config/gameConfig/shopItemsR.json');
+      shopItemsR=require('../../config/gameConfig/shopItemsR.json');
       item=shopItemsR[itemIndex];
   }
   //3扣除购买所需要的费用
@@ -195,8 +196,19 @@ Player.prototype.buyShopItemByIndex=function(itemIndex,page) {
   this.shopItems.splice(itemIndex,1);
   }
   }
+  var res;
 
-  return signal;
+  //发送返回结果
+  if（page===1|）
+  {
+      res={signal:signal,shopItems:this.shopItems,gold:this.gold,diamond:this.diamond};
+  }
+  else
+  {
+      res={signal:signal,shopItems:shopItemsR,gold:this.gold,diamond:this.diamond};
+  }
+
+  return res;
 
 }
 //英雄升级

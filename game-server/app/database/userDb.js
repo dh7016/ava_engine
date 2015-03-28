@@ -341,14 +341,9 @@ userDb.savePlayerInfo = function(player,cb)
 	//3shopitems数据
 	var shopItems=acc.jsonToString(player.shopItems);
 
-	
-
-
 	//4heroOwned
 	// 转化为String
 	var heroOwned=acc.jsonToString(player.heroOwned);
-	
-
 	//5mercenaryowned
 	// 转化为String
 	var mercenaryOwned=acc.jsonToString(player.mercenaryOwned);

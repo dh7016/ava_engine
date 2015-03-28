@@ -14,6 +14,7 @@ app.configure('production|development', function(){
       //config 
       app.loadConfig('mysql', app.getBase() + '/config/mysql.json');  
       app.loadConfig('itemBase', app.getBase() + '/config/gameConfig/item.json'); 
+      app.loadConfig('baseConfig', app.getBase() + '/config/gameConfig/base.json');
 });
 
 //mysql连接点

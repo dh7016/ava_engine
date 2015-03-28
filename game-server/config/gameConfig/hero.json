@@ -1,0 +1,23 @@
+[
+	{"heroId":0,"lookingId":0,"attackType":0,"itemGrid":3,"detail":
+	[
+		{"level":1,"hp":100,"ap":200,"range":100,"rebornTime":10},
+		{"level":2,"hp":200,"ap":300,"range":100,"rebornTime":10},
+		{"level":3,"hp":300,"ap":400,"range":100,"rebornTime":10},
+	]
+	},
+	{"heroId":1,"lookingId":1,"attackType":0,"itemGrid":3,"detail":
+	[
+		{"level":1,"hp":100,"ap":200,"range":100,"rebornTime":10},
+		{"level":2,"hp":200,"ap":300,"range":100,"rebornTime":10},
+		{"level":3,"hp":300,"ap":400,"range":100,"rebornTime":10},
+	]
+	},
+	{"heroId":2,"lookingId":2,"attackType":0,"itemGrid":3,"detail":
+	[
+		{"level":1,"hp":100,"ap":200,"range":100,"rebornTime":10},
+		{"level":2,"hp":200,"ap":300,"range":100,"rebornTime":10},
+		{"level":3,"hp":300,"ap":400,"range":100,"rebornTime":10},
+	]
+	}
+]

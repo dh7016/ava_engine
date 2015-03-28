@@ -77,7 +77,7 @@ randomSys.prototype.getRandomItem=function() {
 	}
 
 	///返还选中结果itemId就是被选中物品的id
-	return itemId;
+	return {itemId:itemId,level:1};
 }
  ///////////////random function//////////
  ////////得到一个随机数/////////

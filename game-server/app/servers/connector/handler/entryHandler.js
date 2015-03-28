@@ -128,8 +128,8 @@ Handler.prototype.requestEnter = function(msg, session, next) {
         
 
         //解析佣兵数据
-        var mercenaryOwned=acc.stringToJson(res[0].mercenaryOwned);
-        length=mercenaryOwned.length;
+        new_player.mercenaryOwned=acc.stringToJson(res[0].mercenaryOwned);
+        /*length=mercenaryOwned.length;
         for(tra=0;tra<length;tra++) {
           //生成heroOwned数据
           var mercenaryData=mercenaryOwned[tra];
@@ -154,7 +154,7 @@ Handler.prototype.requestEnter = function(msg, session, next) {
           new_mercenary.attribute=mercenaryData.attribute;
           //放入数组
           new_player.heroOwned.push(new_mercenary)
-        }
+        }*/
 
 
 

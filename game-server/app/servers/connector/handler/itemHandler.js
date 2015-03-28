@@ -105,7 +105,7 @@ Handler.prototype.requestFreshShopItem=function(msg,session,next){
 	var player=pomelo.app.get('playerpool').getPlayerByUid(session.uid);
 
 	//2检验是否有钱购买
-	int fresh_cost=parseInt(pomelo.app.get('baseConfig').priceForFreshShop);
+	var fresh_cost=parseInt(pomelo.app.get('baseConfig').priceForFreshShop);
 	var signal=0;
 	if(fresh_cost>=0){
 		//花费的是金币

@@ -199,7 +199,7 @@ Player.prototype.buyShopItemByIndex=function(itemIndex,page) {
   var res;
 
   //发送返回结果
-  if（page===1）
+  if(page===1)
   {
       res={signal:signal,shopItems:this.shopItems,gold:this.gold,diamond:this.diamond};
   }

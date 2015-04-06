@@ -1,6 +1,8 @@
 var async = require('async');
 var tokenService = require('../../../services/tokenService');
 var userDb = require('../../../database/userDb');
+var pomelo = require('pomelo');
+
 //var logger = require('pomelo-logger').getLogger(__filename);
 
 module.exports = function(app) {
